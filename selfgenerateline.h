@@ -6,12 +6,14 @@
 #include <QGraphicsLineItem>
 
 
-class SelfGenerateLine : public QObject, public QGraphicsLineItem
+class SelfGenerateLine : public QObject
 {
-
+    Q_OBJECT
 public:
-    SelfGenerateLine(void);
-    ~SelfGenerateLine();
+    SelfGenerateLine(QObject * parent = nullptr);
+    ~SelfGenerateLine(){};
+
+    //void setGraphicsParent(QGraphicsItem * graphicsParent = nullptr);
 
 private:
 
