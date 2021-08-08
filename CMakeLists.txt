@@ -24,13 +24,17 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 #    endif()
 #endif()
 
-find_package(QT NAMES Qt6 Qt5 COMPONENTS Widgets REQUIRED)
-find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Widgets REQUIRED)
+find_package(QT NAMES Qt6 Qt5 COMPONENTS Widgets Core Gui REQUIRED)
+find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Widgets Core Gui REQUIRED)
 
 set(PROJECT_SOURCES
         main.cpp
         logopage.cpp
         logopage.h
+        selfgenerateline.cpp
+        selfgenerateline.h
+        totemanimatingwidget.cpp
+        totemanimatingwidget.h
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
@@ -49,4 +53,4 @@ else()
     endif()
 endif()
 
-target_link_libraries(TheMyWorld PRIVATE Qt${QT_VERSION_MAJOR}::Widgets)
+target_link_libraries(TheMyWorld PRIVATE Qt${QT_VERSION_MAJOR}::Widgets Qt${QT_VERSION_MAJOR}::Core Qt${QT_VERSION_MAJOR}::Gui)
