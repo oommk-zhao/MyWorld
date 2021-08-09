@@ -6,6 +6,6 @@ int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
     LogoPage w;
-    w.show();
+    w.showWidget();
     return a.exec();
 }

@@ -2,6 +2,8 @@
 #define LOGOPAGE_H
 
 #include <QWidget>
+#include <QGraphicsView>
+#include <QGraphicsScene>
 
 class LogoPage : public QWidget
 {
@@ -9,6 +11,14 @@ class LogoPage : public QWidget
 
 public:
     LogoPage(QWidget *parent = nullptr);
-    ~LogoPage();
+    virtual ~LogoPage();
+
+    void showWidget(void);
+
+private:
+
+    QGraphicsView * totemGraphicsView_;
+    QGraphicsScene * totemGraphicsScene_;
+
 };
 #endif // LOGOPAGE_H

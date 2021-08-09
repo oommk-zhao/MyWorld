@@ -2,8 +2,7 @@
 
 TotemAnimatingWidget::TotemAnimatingWidget(QWidget *parent):
     QWidget(parent),
-    selfGenerateAnimation_(nullptr),
-    paralleLineList_()
+    selfGenerateAnimation_(nullptr)
 {
 }
 

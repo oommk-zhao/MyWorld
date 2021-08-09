@@ -1,10 +1,9 @@
 #ifndef TOTEMANIMATINGWIDGET_H
 #define TOTEMANIMATINGWIDGET_H
 
-#include <QWidget>
+#include <QGraphicsView>
 #include <QDebug>
 #include <QList>
-#include <QLineF>
 #include <QPropertyAnimation>
 
 class TotemAnimatingWidget : public QWidget
@@ -21,7 +20,6 @@ signals:
 private:
 
     QPropertyAnimation * selfGenerateAnimation_;
-    QList<QLineF> paralleLineList_;
 
 
 
