@@ -2,7 +2,8 @@
 
 SelfGenerateLine::SelfGenerateLine(QObject * parent):
     QObject(parent),
-    QGraphicsLineItem(nullptr)
+    QGraphicsLineItem(nullptr),
+    m_linePosY()
 {
 
 }
@@ -19,4 +20,16 @@ void SelfGenerateLine::setGraphicsParent(QGraphicsItem * graphicsParent)
     this->setParentItem(graphicsParent);
 
     return;
+}
+
+
+QPointF SelfGenerateLine::getLinePosY(void)
+{
+    return m_linePosY;
+}
+
+
+void SelfGenerateLine::setLinePosY(QPointF linePosY)
+{
+    m_linePosY = linePosY;
 }

@@ -3,16 +3,19 @@
 LogoPage::LogoPage(QWidget *parent):
     QWidget(parent),
     totemGraphicsView_(nullptr),
-    totemGraphicsScene_(nullptr)
+    totemGraphicsScene_(nullptr),
+    testLine_(nullptr)
 {
     this->setGeometry(0, 0, 800, 600);
-
-    totemGraphicsView_ = new QGraphicsView(this);
-    totemGraphicsView_->setGeometry(200, 150, 400, 300);
 
     totemGraphicsScene_ = new QGraphicsScene(this);
     totemGraphicsScene_->setSceneRect(200, 150, 400, 300);
 
+    totemGraphicsView_ = new QGraphicsView(this);
+    totemGraphicsView_->setGeometry(200, 150, 400, 300);
+    totemGraphicsView_->setScene(totemGraphicsScene_);
+
+    testLine_ = new SelfGenerateLine(this);
 }
 
 

@@ -4,6 +4,7 @@
 #include <QWidget>
 #include <QGraphicsView>
 #include <QGraphicsScene>
+#include "selfgenerateline.h"
 
 class LogoPage : public QWidget
 {
@@ -19,6 +20,8 @@ private:
 
     QGraphicsView * totemGraphicsView_;
     QGraphicsScene * totemGraphicsScene_;
+
+    SelfGenerateLine * testLine_;
 
 };
 #endif // LOGOPAGE_H
