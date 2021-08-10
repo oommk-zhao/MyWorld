@@ -16,6 +16,9 @@ LogoPage::LogoPage(QWidget *parent):
     totemGraphicsView_->setScene(totemGraphicsScene_);
 
     testLine_ = new SelfGenerateLine(this);
+    totemGraphicsScene_->addItem(testLine_->getGraphicsItem());
+
+    totemGraphicsView_->show();
 }
 
 
@@ -26,5 +29,6 @@ LogoPage::~LogoPage()
 
 void LogoPage::showWidget(void)
 {
-
+    testLine_->getLinePosX();
+    this->show();
 }
