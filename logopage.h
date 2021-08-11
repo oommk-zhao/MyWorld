@@ -4,6 +4,8 @@
 #include <QWidget>
 #include <QGraphicsView>
 #include <QGraphicsScene>
+#include <QPropertyAnimation>
+#include <QPushButton>
 #include "selfgenerateline.h"
 
 class LogoPage : public QWidget
@@ -22,6 +24,7 @@ private:
     QGraphicsScene * totemGraphicsScene_;
 
     SelfGenerateLine * testLine_;
+
 
 };
 #endif // LOGOPAGE_H

@@ -2,11 +2,11 @@
 
 SelfGenerateLine::SelfGenerateLine(QObject * parent):
     QObject(parent),
-    m_linePosX_(),
-    m_linePosY_(),
+    m_linePosStart_(),
+    m_linePosEnd_(),
     m_graphicsLineItem_(nullptr)
 {
-    m_graphicsLineItem_ = new QGraphicsLineItem(30, 30, 220, 200);
+    m_graphicsLineItem_ = new QGraphicsLineItem(0, 0, 0, 0);
 }
 
 
@@ -24,29 +24,27 @@ void SelfGenerateLine::setGraphicsParent(QGraphicsItem * graphicsParent)
 }
 
 
-QPointF SelfGenerateLine::getLinePosY(void)
+QPointF SelfGenerateLine::getLinePosStart(void)
 {
-    return m_linePosY_;
+    return m_linePosStart_;
 }
 
 
-void SelfGenerateLine::setLinePosY(QPointF linePosY)
+void SelfGenerateLine::setLinePosStart(QPointF linePosStart)
 {
-    m_linePosY_ = linePosY;
+    m_linePosStart_ = linePosStart;
 }
 
 
-QPointF SelfGenerateLine::getLinePosX(void)
+QPointF SelfGenerateLine::getLinePosEnd(void)
 {
-    m_graphicsLineItem_->setLine(300,300,600,600);
-
-    return m_linePosX_;
+    return m_linePosEnd_;
 }
 
 
-void SelfGenerateLine::setLinePosX(QPointF linePosX)
+void SelfGenerateLine::setLinePosEnd(QPointF linePosEnd)
 {
-    m_linePosX_ = linePosX;
+    m_linePosEnd_ = linePosEnd;
 }
 
 
@@ -54,3 +52,12 @@ QGraphicsLineItem * SelfGenerateLine::getGraphicsItem(void)
 {
     return m_graphicsLineItem_;
 }
+
+
+void SelfGenerateLine::setLine(qreal x1, qreal y1, qreal x2, qreal y2)
+{
+    this->m_graphicsLineItem_->setLine(x1,y1, x2, y2);
+}
+
+
+

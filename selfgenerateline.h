@@ -11,8 +11,8 @@ class SelfGenerateLine : public QObject
 {
     Q_OBJECT
 
-    Q_PROPERTY(QPointF m_linePosY READ getLinePosY WRITE setLinePosY)
-    Q_PROPERTY(QPointF m_linePosX READ getLinePosX WRITE setLinePosX)
+    Q_PROPERTY(QPointF m_linePosStart_ READ getLinePosStart WRITE setLinePosStart)
+    Q_PROPERTY(QPointF m_linePosEnd_ READ getLinePosEnd WRITE setLinePosEnd)
 
 public:
     SelfGenerateLine(QObject * parent = nullptr);
@@ -20,17 +20,19 @@ public:
 
     void setGraphicsParent(QGraphicsItem * graphicsParent = nullptr);
 
-    QPointF getLinePosX(void);
-    void setLinePosX(QPointF linePosX);
-    QPointF getLinePosY(void);
-    void setLinePosY(QPointF linePosY);
+    QPointF getLinePosStart(void);
+    void setLinePosStart(QPointF linePosStart);
+    QPointF getLinePosEnd(void);
+    void setLinePosEnd(QPointF linePosEnd);
 
     QGraphicsLineItem * getGraphicsItem(void);
 
+    void setLine(qreal x1, qreal y1, qreal x2, qreal y2);
+
 private:
 
-    QPointF m_linePosX_;
-    QPointF m_linePosY_;
+    QPointF m_linePosStart_;
+    QPointF m_linePosEnd_;
     QGraphicsLineItem * m_graphicsLineItem_;
 };
 
