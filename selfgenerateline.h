@@ -25,9 +25,11 @@ public:
     QPointF getLinePosEnd(void);
     void setLinePosEnd(QPointF linePosEnd);
 
+    void refreshGraphicsLinePosition(void);
+
     QGraphicsLineItem * getGraphicsItem(void);
 
-    void setLine(qreal x1, qreal y1, qreal x2, qreal y2);
+    void setGraphicsLine(qreal x1, qreal y1, qreal x2, qreal y2);
 
 private:
 

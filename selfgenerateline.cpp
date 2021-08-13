@@ -33,6 +33,7 @@ QPointF SelfGenerateLine::getLinePosStart(void)
 void SelfGenerateLine::setLinePosStart(QPointF linePosStart)
 {
     m_linePosStart_ = linePosStart;
+    refreshGraphicsLinePosition();
 }
 
 
@@ -45,6 +46,13 @@ QPointF SelfGenerateLine::getLinePosEnd(void)
 void SelfGenerateLine::setLinePosEnd(QPointF linePosEnd)
 {
     m_linePosEnd_ = linePosEnd;
+    refreshGraphicsLinePosition();
+}
+
+
+void SelfGenerateLine::refreshGraphicsLinePosition(void)
+{
+    m_graphicsLineItem_->setLine(m_linePosStart_.x(), m_linePosStart_.y(), m_linePosEnd_.x() ,m_linePosEnd_.y());
 }
 
 
@@ -54,7 +62,7 @@ QGraphicsLineItem * SelfGenerateLine::getGraphicsItem(void)
 }
 
 
-void SelfGenerateLine::setLine(qreal x1, qreal y1, qreal x2, qreal y2)
+void SelfGenerateLine::setGraphicsLine(qreal x1, qreal y1, qreal x2, qreal y2)
 {
     this->m_graphicsLineItem_->setLine(x1,y1, x2, y2);
 }

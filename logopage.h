@@ -25,6 +25,8 @@ private:
 
     SelfGenerateLine * testLine_;
 
+    QPushButton * animateActiveButton_;
+
 
 };
 #endif // LOGOPAGE_H
