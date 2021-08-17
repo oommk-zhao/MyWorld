@@ -64,7 +64,10 @@ QGraphicsLineItem * SelfGenerateLine::getGraphicsItem(void)
 
 void SelfGenerateLine::setGraphicsLine(qreal x1, qreal y1, qreal x2, qreal y2)
 {
-    this->m_graphicsLineItem_->setLine(x1,y1, x2, y2);
+    setLinePosStart(QPointF(x1, y1));
+    setLinePosEnd(QPointF(x1, y1));
+
+    refreshGraphicsLinePosition();
 }
 
 

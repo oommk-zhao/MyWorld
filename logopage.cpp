@@ -37,3 +37,15 @@ void LogoPage::showWidget(void)
 {
     this->show();
 }
+
+
+void LogoPage::generateTotem(void)
+{
+    //line set start pos
+    //line generate itself
+    //line end
+
+    //loop
+
+    //finish one all loop, then restart again
+}

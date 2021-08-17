@@ -18,6 +18,10 @@ public:
 
     void showWidget(void);
 
+private slots:
+
+    void generateTotem(void);
+
 private:
 
     QGraphicsView * totemGraphicsView_;
