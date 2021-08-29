@@ -4,9 +4,11 @@ SelfGenerateLine::SelfGenerateLine(QObject * parent):
     QObject(parent),
     m_linePosStart_(),
     m_linePosEnd_(),
-    m_graphicsLineItem_(nullptr)
+    m_graphicsLineItem_(nullptr),
+    m_singleLineDuration_(0)
 {
     m_graphicsLineItem_ = new QGraphicsLineItem(0, 0, 0, 0);
+    setSingleAnimationDuration(500);
 }
 
 
@@ -69,6 +71,26 @@ void SelfGenerateLine::setGraphicsLine(qreal x1, qreal y1, qreal x2, qreal y2)
 
     refreshGraphicsLinePosition();
 }
+
+
+void SelfGenerateLine::startLineGenerating(QPointF startPos)
+{
+    setLinePosStart(startPos);
+    generateLine();
+}
+
+
+void SelfGenerateLine::setSingleAnimationDuration(int durationTime)
+{
+    m_singleLineDuration_ = durationTime;
+}
+
+
+void SelfGenerateLine::generateLine(void)
+{
+
+}
+
 
 
 

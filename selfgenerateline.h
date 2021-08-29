@@ -5,6 +5,7 @@
 #include <QObject>
 #include <QPointF>
 #include <QGraphicsLineItem>
+#include <QPropertyAnimation>
 
 
 class SelfGenerateLine : public QObject
@@ -31,11 +32,20 @@ public:
 
     void setGraphicsLine(qreal x1, qreal y1, qreal x2, qreal y2);
 
+    void startLineGenerating(QPointF startPos);
+    void setSingleAnimationDuration(int durationTime);
+
 private:
+
+    void generateLine(void);
 
     QPointF m_linePosStart_;
     QPointF m_linePosEnd_;
     QGraphicsLineItem * m_graphicsLineItem_;
+
+    // unit = ms
+    int m_singleLineDuration_;
+
 };
 
 #endif // SELFGENERATELINE_H
