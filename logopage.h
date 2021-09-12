@@ -6,6 +6,7 @@
 #include <QGraphicsScene>
 #include <QPropertyAnimation>
 #include <QPushButton>
+#include <QPointF>
 #include "selfgenerateline.h"
 
 class LogoPage : public QWidget
@@ -21,6 +22,7 @@ public:
 private slots:
 
     void generateTotem(void);
+    void generatingLoop(QPointF startPos);
 
 private:
 
@@ -31,6 +33,7 @@ private:
 
     QPushButton * animateActiveButton_;
 
+    int generatingCount_
 
 };
 #endif // LOGOPAGE_H

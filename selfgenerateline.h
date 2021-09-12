@@ -33,11 +33,14 @@ public:
     void setGraphicsLine(qreal x1, qreal y1, qreal x2, qreal y2);
 
     void startLineGenerating(QPointF startPos);
+
     void setSingleAnimationDuration(int durationTime);
 
 private:
 
-    void generateLine(void);
+    void generateEndPos(void);
+    double generateEndPosX(void);
+    double generateEndPosY(void);
 
     QPointF m_linePosStart_;
     QPointF m_linePosEnd_;
@@ -45,6 +48,9 @@ private:
 
     // unit = ms
     int m_singleLineDuration_;
+
+    double m_endDirectionDelta_;
+    double m_endLengthDelta_;
 
 };
 

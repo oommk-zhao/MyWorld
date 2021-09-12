@@ -1,3 +1,4 @@
+#include <QRandomGenerator>
 #include "selfgenerateline.h"
 
 SelfGenerateLine::SelfGenerateLine(QObject * parent):
@@ -5,7 +6,9 @@ SelfGenerateLine::SelfGenerateLine(QObject * parent):
     m_linePosStart_(),
     m_linePosEnd_(),
     m_graphicsLineItem_(nullptr),
-    m_singleLineDuration_(0)
+    m_singleLineDuration_(0),
+    m_endDirectionDelta_(0),
+    m_endLengthDelta_(50)
 {
     m_graphicsLineItem_ = new QGraphicsLineItem(0, 0, 0, 0);
     setSingleAnimationDuration(500);
@@ -67,7 +70,7 @@ QGraphicsLineItem * SelfGenerateLine::getGraphicsItem(void)
 void SelfGenerateLine::setGraphicsLine(qreal x1, qreal y1, qreal x2, qreal y2)
 {
     setLinePosStart(QPointF(x1, y1));
-    setLinePosEnd(QPointF(x1, y1));
+    setLinePosEnd(QPointF(x2, y2));
 
     refreshGraphicsLinePosition();
 }
@@ -76,7 +79,7 @@ void SelfGenerateLine::setGraphicsLine(qreal x1, qreal y1, qreal x2, qreal y2)
 void SelfGenerateLine::startLineGenerating(QPointF startPos)
 {
     setLinePosStart(startPos);
-    generateLine();
+    generateEndPos();
 }
 
 
@@ -86,10 +89,51 @@ void SelfGenerateLine::setSingleAnimationDuration(int durationTime)
 }
 
 
-void SelfGenerateLine::generateLine(void)
+void SelfGenerateLine::generateEndPos(void)
+{
+    //calculate the Delta(direction and length) -> have the end position
+    double targetEndPosX = m_linePosStart_.x();
+    double targetEndPosY = m_linePosStart_.y();
+
+    targetEndPosX = generateEndPosX();
+    targetEndPosY = generateEndPosY();
+
+    setLinePosEnd(QPointF(targetEndPosX, targetEndPosY));
+
+}
+
+
+double SelfGenerateLine::generateEndPosX(void)
 {
 
 }
+
+
+double SelfGenerateLine::generateEndPosY(void)
+{
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
