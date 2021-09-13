@@ -105,13 +105,20 @@ void SelfGenerateLine::generateEndPos(void)
 
 double SelfGenerateLine::generateEndPosX(void)
 {
+    double targetEndPosX = m_linePosStart_.x();
 
+    int sinArch = 0;
+    sinArch = QRandomGenerator::global()->bounded(0, 360);
+
+    return targetEndPosX;
 }
 
 
 double SelfGenerateLine::generateEndPosY(void)
 {
+    double targetEndPosY = m_linePosStart_.y();
 
+    return targetEndPosY;
 }
 
 
