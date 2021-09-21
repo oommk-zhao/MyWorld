@@ -1,4 +1,5 @@
 #include <QRandomGenerator>
+#include <QtMath>
 #include "selfgenerateline.h"
 
 SelfGenerateLine::SelfGenerateLine(QObject * parent):

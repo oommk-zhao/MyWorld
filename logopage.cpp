@@ -1,3 +1,4 @@
+#include <QtMath>
 #include "logopage.h"
 
 
@@ -26,6 +27,8 @@ LogoPage::LogoPage(QWidget *parent):
     animateActiveButton_ = new QPushButton(this);
     animateActiveButton_->setGeometry(300, 480, 200, 80);
     animateActiveButton_->setText("Active Line Animatiion");
+
+    qDebug() << qSin(qDegreesToRadians(30)) << Qt::endl;
 
     totemGraphicsView_->show();
 

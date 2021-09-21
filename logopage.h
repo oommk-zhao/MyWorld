@@ -33,7 +33,7 @@ private:
 
     QPushButton * animateActiveButton_;
 
-    int generatingCount_
+    int generatingCount_;
 
 };
 #endif // LOGOPAGE_H
