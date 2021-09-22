@@ -29,8 +29,6 @@ private:
     QGraphicsView * totemGraphicsView_;
     QGraphicsScene * totemGraphicsScene_;
 
-    SelfGenerateLine * testLine_;
-
     QPushButton * animateActiveButton_;
 
     int generatingCount_;

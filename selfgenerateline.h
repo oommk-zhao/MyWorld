@@ -39,8 +39,8 @@ public:
 private:
 
     void generateEndPos(void);
-    double generateEndPosX(void);
-    double generateEndPosY(void);
+    double generateEndPosX(int angel);
+    double generateEndPosY(int angel);
 
     QPointF m_linePosStart_;
     QPointF m_linePosEnd_;

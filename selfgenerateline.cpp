@@ -9,7 +9,7 @@ SelfGenerateLine::SelfGenerateLine(QObject * parent):
     m_graphicsLineItem_(nullptr),
     m_singleLineDuration_(0),
     m_endDirectionDelta_(0),
-    m_endLengthDelta_(50)
+    m_endLengthDelta_(40)
 {
     m_graphicsLineItem_ = new QGraphicsLineItem(0, 0, 0, 0);
     setSingleAnimationDuration(500);
@@ -96,28 +96,41 @@ void SelfGenerateLine::generateEndPos(void)
     double targetEndPosX = m_linePosStart_.x();
     double targetEndPosY = m_linePosStart_.y();
 
-    targetEndPosX = generateEndPosX();
-    targetEndPosY = generateEndPosY();
+    int angel = 0;
+    angel = QRandomGenerator::global()->bounded(-45, 45);
+
+    targetEndPosX = generateEndPosX(angel);
+    targetEndPosY = generateEndPosY(angel);
 
     setLinePosEnd(QPointF(targetEndPosX, targetEndPosY));
 
 }
 
 
-double SelfGenerateLine::generateEndPosX(void)
+double SelfGenerateLine::generateEndPosX(int angel)
 {
     double targetEndPosX = m_linePosStart_.x();
 
-    int sinArch = 0;
-    sinArch = QRandomGenerator::global()->bounded(0, 360);
+    double targetDelta = m_endLengthDelta_ * qSin(qDegreesToRadians(angel));
+
+    targetEndPosX += targetDelta;
+
+    qDebug() << "random target X :  " << targetEndPosX << "  random angel : " << angel << Qt::endl;
 
     return targetEndPosX;
 }
 
 
-double SelfGenerateLine::generateEndPosY(void)
+double SelfGenerateLine::generateEndPosY(int angel)
 {
     double targetEndPosY = m_linePosStart_.y();
+
+    double targetDelta = m_endLengthDelta_ * qCos(qDegreesToRadians(angel)) * -1;
+
+    targetEndPosY += targetDelta;
+
+    qDebug() << "random target Y :  " << targetEndPosY << "  random angel : " << angel << Qt::endl;
+
 
     return targetEndPosY;
 }
