@@ -36,6 +36,10 @@ public:
 
     void setSingleAnimationDuration(int durationTime);
 
+    void setAngelParameters(int startAngel, int endAngel);
+
+    void setLength(double length);
+
 private:
 
     void generateEndPos(void);
@@ -49,8 +53,9 @@ private:
     // unit = ms
     int m_singleLineDuration_;
 
-    double m_endDirectionDelta_;
-    double m_endLengthDelta_;
+    int m_angelBegin_;
+    int m_angelEnd_;
+    double m_length_;
 
 };
 

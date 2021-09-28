@@ -26,12 +26,16 @@ private slots:
 
 private:
 
-    QGraphicsView * totemGraphicsView_;
-    QGraphicsScene * totemGraphicsScene_;
+    QGraphicsView * m_totemGraphicsView_;
+    QGraphicsScene * m_totemGraphicsScene_;
 
-    QPushButton * animateActiveButton_;
+    QPushButton * m_animateActiveButton_;
 
-    int generatingCount_;
+    int m_generatingCount_;
+
+    int m_startAngel_;
+    int m_endAngel_;
+    int m_singleLineLength_;
 
 };
 #endif // LOGOPAGE_H
