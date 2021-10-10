@@ -10,7 +10,8 @@ LogoPage::LogoPage(QWidget *parent):
     m_generatingCount_(0),
     m_startAngel_(-45),
     m_endAngel_(45),
-    m_singleLineLength_(40)
+    m_singleLineLength_(40),
+    m_selfGenrateBranches_()
 {
     this->setGeometry(0, 0, 1800, 900);
 
@@ -50,13 +51,13 @@ void LogoPage::showWidget(void)
 
 void LogoPage::generateTotem(void)
 {
-    SelfGenerateLine* basicLine = new SelfGenerateLine();
-    basicLine->setLinePosStart(QPointF(-200, 400));
-    basicLine->setLinePosEnd(QPointF(200, 400));
-    basicLine->setAngelParameters(m_startAngel_, m_endAngel_);
-    basicLine->setLength(m_singleLineLength_);
+    SelfGenerateBranch* basicBranch = new SelfGenerateBranch();
+    basicBranch->setLinePosStart(QPointF(-200, 400));
+    basicBranch->setLinePosEnd(QPointF(200, 400));
+    basicBranch->setAngelParameters(m_startAngel_, m_endAngel_);
+    basicBranch->setLength(m_singleLineLength_);
 
-    m_totemGraphicsScene_->addItem(basicLine->getGraphicsItem());
+    m_totemGraphicsScene_->addItem(basicBranch->getGraphicsItem());
 
     generatingLoop(QPointF(0,400));
 
@@ -70,7 +71,7 @@ void LogoPage::generatingLoop(QPointF startPos)
         return;
     }
 
-    SelfGenerateLine * loopLine = new SelfGenerateLine();
+    SelfGenerateBranch * loopLine = new SelfGenerateBranch();
     loopLine->setAngelParameters(m_startAngel_, m_endAngel_);
     loopLine->setLength(m_singleLineLength_);
     loopLine->startLineGenerating(startPos);

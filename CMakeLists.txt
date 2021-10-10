@@ -31,8 +31,10 @@ set(PROJECT_SOURCES
         main.cpp
         logopage.cpp
         logopage.h
-        selfgenerateline.cpp
-        selfgenerateline.h
+        selfgeneratebranch.cpp
+        selfgeneratebranch.h
+        singlesimplebranch.cpp
+        singlesimplebranch.h
         totemanimatingwidget.cpp
         totemanimatingwidget.h
 )
