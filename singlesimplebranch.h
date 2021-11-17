@@ -18,7 +18,7 @@ class SingleSimpleBranch : public QObject
 
 public:
     explicit SingleSimpleBranch(QObject *parent = nullptr);
-    virtual SingleSimpleBranch();
+    virtual ~SingleSimpleBranch();
 
     void setGraphicsParent(QGraphicsItem * graphicsParent = nullptr);
 
