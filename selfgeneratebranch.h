@@ -7,8 +7,11 @@
 #include <QGraphicsLineItem>
 #include <QPropertyAnimation>
 
+
+
+// the above are pending
 // change this object to be a container
-// to be the maintainer of the branchlist
+// to be the maintainer of the single simple branch list
 // to return the generated looping graphics branch
 // to do the loop
 // to adjust the parameters of the looping
