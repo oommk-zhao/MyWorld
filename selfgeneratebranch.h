@@ -7,9 +7,18 @@
 #include <QGraphicsLineItem>
 #include <QPropertyAnimation>
 
+// Responsibility: Done
 
+// this is the object of one entire whole branch.
+// from the start point, to the end of the whole generation.
+// BUT, only for the one line of generated branch.
 
-// the above are pending
+// and this shall notify this parent to generate a new branch during the loop
+
+// and return the end single branch/leaf, its graphics item
+
+-----------------------------
+// the following are pending
 // change this object to be a container
 // to be the maintainer of the single simple branch list
 // to return the generated looping graphics branch
@@ -19,9 +28,6 @@
 class SelfGenerateBranch : public QObject
 {
     Q_OBJECT
-
-    Q_PROPERTY(QPointF m_linePosStart_ READ getLinePosStart WRITE setLinePosStart)
-    Q_PROPERTY(QPointF m_linePosEnd_ READ getLinePosEnd WRITE setLinePosEnd)
 
 public:
     SelfGenerateBranch(QObject * parent = nullptr);

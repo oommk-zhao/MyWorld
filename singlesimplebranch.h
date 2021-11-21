@@ -7,7 +7,17 @@
 #include <QGraphicsLineItem>
 #include <QPropertyAnimation>
 
-// to take the place of the previous selfGenerateLine
+
+// Responsibility: Done
+
+// to generate itself
+
+// to offer the graphics item
+// to offer the properties for animation
+
+// this is the real item of the single branch, or let's say,
+// the exact generated single leaf during each turn of the loop
+
 
 class SingleSimpleBranch : public QObject
 {

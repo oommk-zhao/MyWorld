@@ -6,14 +6,19 @@
 #include <QList>
 #include <QPropertyAnimation>
 
+#include "selfgeneratebranch.h"
 
-// Responsibility
-// 1. decide whether to generate new branch
-//    set the parameters "length", "angel", "count" for the new branch
-// 2. execute the main loop of the generating
-//    and each branch will end itself when the "count" is at the end
-// 3. for each turn of loop, get the generated graphic item
+
+// Responsibility (not very clear yet)
+
+// 1. for each turn of loop, get the generated graphic item
 //    and forward it to the Scene
+
+// 2. decide whether to generate new branch
+//    set the parameters "length", "angel", "count" for the new branch
+
+// 3. execute the main loop of the generating
+//    and each branch will end itself when the "count" is at the end
 
 
 class TotemAnimatingWidget : public QWidget
@@ -25,11 +30,22 @@ public:
 
     void showWidget(void);
 
+    QPointF getMainBranchStartPos(void);
+    void setMainBranchStartPos(QPointF linePosStart);
+
+    void setGraphicsScene();
+
+
+
 signals:
 
 private:
 
-    QPropertyAnimation * selfGenerateAnimation_;
+    SelfGenerateBranch * m_selfGenerateBranch_;
+
+    QGraphicsScene * m_totemGraphicsScene_;
+
+    QPropertyAnimation * m_selfGenerateAnimation_;
 
 
 
