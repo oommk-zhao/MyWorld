@@ -4,8 +4,11 @@
 #include <QDebug>
 #include <QObject>
 #include <QPointF>
+#include <QList>
 #include <QGraphicsLineItem>
 #include <QPropertyAnimation>
+
+#include "singlesimplebranch.h"
 
 // Responsibility: Done
 
@@ -17,7 +20,7 @@
 
 // and return the end single branch/leaf, its graphics item
 
------------------------------
+//-----------------------------
 // the following are pending
 // change this object to be a container
 // to be the maintainer of the single simple branch list
@@ -54,11 +57,15 @@ public:
 
     void setLength(double length);
 
+    void setGeneratingCount(int count);
+
+    void setGraphicScene(QGraphicsScene * branchScene);
+
+    void setAnimationObj(QPropertyAnimation * animationObj);
+
 private:
 
-    void generateEndPos(void);
-    double generateEndPosX(int angel);
-    double generateEndPosY(int angel);
+    void generatingBranches(void);
 
     QPointF m_linePosStart_;
     QPointF m_linePosEnd_;
@@ -70,6 +77,13 @@ private:
     int m_angelBegin_;
     int m_angelEnd_;
     double m_length_;
+    int m_generatingCount_;
+
+    QPropertyAnimation * m_selfGenerateAnimation_;
+
+    QGraphicsScene * m_branchesScene_;
+
+    QList<SingleSimpleBranch *> m_singleBranchList_;
 
 };
 

@@ -1,4 +1,5 @@
 #include <QRandomGenerator>
+#include <QGraphicsScene>
 #include <QtMath>
 #include "selfgeneratebranch.h"
 
@@ -10,7 +11,11 @@ SelfGenerateBranch::SelfGenerateBranch(QObject * parent):
     m_singleLineDuration_(0),
     m_angelBegin_(0),
     m_angelEnd_(0),
-    m_length_(40)
+    m_length_(40),
+    m_generatingCount_(0),
+    m_selfGenerateAnimation_(nullptr),
+    m_branchesScene_(nullptr),
+    m_singleBranchList_()
 {
     m_graphicsLineItem_ = new QGraphicsLineItem(0, 0, 0, 0);
     setSingleAnimationDuration(500);
@@ -81,7 +86,7 @@ void SelfGenerateBranch::setGraphicsLine(qreal x1, qreal y1, qreal x2, qreal y2)
 void SelfGenerateBranch::startLineGenerating(QPointF startPos)
 {
     setLinePosStart(startPos);
-    generateEndPos();
+    generatingBranches();
 }
 
 
@@ -104,51 +109,53 @@ void SelfGenerateBranch::setLength(double length)
 }
 
 
-void SelfGenerateBranch::generateEndPos(void)
+void SelfGenerateBranch::setGeneratingCount(int count)
 {
-    //calculate the Delta(direction and length) -> have the end position
-    double targetEndPosX = m_linePosStart_.x();
-    double targetEndPosY = m_linePosStart_.y();
-
-    int angel = 0;
-    angel = QRandomGenerator::global()->bounded(m_angelBegin_, m_angelEnd_);
-
-    targetEndPosX = generateEndPosX(angel);
-    targetEndPosY = generateEndPosY(angel);
-
-    setLinePosEnd(QPointF(targetEndPosX, targetEndPosY));
-
+    m_generatingCount_ = count;
 }
 
 
-double SelfGenerateBranch::generateEndPosX(int angel)
+void SelfGenerateBranch::setGraphicScene(QGraphicsScene * branchScene)
 {
-    double targetEndPosX = m_linePosStart_.x();
-
-    double targetDelta = m_length_ * qSin(qDegreesToRadians(angel));
-
-    targetEndPosX += targetDelta;
-
-    qDebug() << "random target X :  " << targetEndPosX << "  random angel : " << angel << Qt::endl;
-
-    return targetEndPosX;
+    m_branchesScene_ = branchScene;
 }
 
 
-double SelfGenerateBranch::generateEndPosY(int angel)
+void SelfGenerateBranch::setAnimationObj(QPropertyAnimation * animationObj)
 {
-    double targetEndPosY = m_linePosStart_.y();
-
-    double targetDelta = m_length_ * qCos(qDegreesToRadians(angel)) * -1;
-
-    targetEndPosY += targetDelta;
-
-    qDebug() << "random target Y :  " << targetEndPosY << "  random angel : " << angel << Qt::endl;
-
-
-    return targetEndPosY;
+    m_selfGenerateAnimation_ = animationObj;
 }
 
+
+void SelfGenerateBranch::generatingBranches(void)
+{
+    QPointF startPosTemp = m_linePosStart_;
+
+    m_generatingCount_ = 2;
+
+    while (m_generatingCount_ > 0)
+    {
+        SingleSimpleBranch * singleTemp = new SingleSimpleBranch(this);
+        singleTemp->setAngelParameters(m_angelBegin_, m_angelEnd_);
+        singleTemp->setLength(m_length_);
+        singleTemp->startLineGenerating(startPosTemp);
+
+        m_branchesScene_->addItem(singleTemp->getGraphicsItem());
+
+        m_selfGenerateAnimation_->setTargetObject(singleTemp);
+        m_selfGenerateAnimation_->setPropertyName(QByteArray("m_linePosEnd_"));
+        m_selfGenerateAnimation_->setDuration(5000);
+        m_selfGenerateAnimation_->setStartValue(startPosTemp);
+        m_selfGenerateAnimation_->setEndValue(singleTemp->getLinePosEnd());
+        m_selfGenerateAnimation_->start();
+
+        startPosTemp = singleTemp->getLinePosEnd();
+
+
+
+        m_generatingCount_--;
+    }
+}
 
 
 

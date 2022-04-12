@@ -39,6 +39,8 @@ public:
 
     void refreshGraphicsLinePosition(void);
 
+    QGraphicsLineItem * getGraphicsItem(void);
+
     void setGraphicsLine(qreal x1, qreal y1, qreal x2, qreal y2);
 
     void startLineGenerating(QPointF startPos);
@@ -54,8 +56,6 @@ private:
     void generateEndPos(void);
     double generateEndPosX(int angel);
     double generateEndPosY(int angel);
-
-    QGraphicsLineItem * getGraphicsItem(void);
 
     QPointF m_linePosStart_;
     QPointF m_linePosEnd_;
