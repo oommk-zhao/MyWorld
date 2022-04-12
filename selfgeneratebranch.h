@@ -63,9 +63,11 @@ public:
 
     void setAnimationObj(QPropertyAnimation * animationObj);
 
-private:
+private slots:
 
     void generatingBranches(void);
+
+private:
 
     QPointF m_linePosStart_;
     QPointF m_linePosEnd_;

@@ -95,7 +95,7 @@ void TotemAnimatingWidget::initialization(void)
 
 void TotemAnimatingWidget::startAnimation(void)
 {
-    QPointF startPos(512, 600);
+    QPointF startPos(512, 650);
     generateLoop(startPos);
 }
 
@@ -120,15 +120,15 @@ void TotemAnimatingWidget::setMainBranchStartPos(QPointF linePosStart)
 
 void TotemAnimatingWidget::startGenerating(void)
 {
-    QPointF startPos(512, 600);
+    QPointF startPos(512, 650);
     generateLoop(startPos);
 }
 
 void TotemAnimatingWidget::generateBaseView(void)
 {
     m_baseBranch_ = new SelfGenerateBranch(m_totemGraphicsScene_);
-    m_baseBranch_->setLinePosStart(QPointF(112, 600));
-    m_baseBranch_->setLinePosEnd(QPointF(912, 600));
+    m_baseBranch_->setLinePosStart(QPointF(112, 650));
+    m_baseBranch_->setLinePosEnd(QPointF(912, 650));
 
     m_totemGraphicsScene_->addItem(m_baseBranch_->getGraphicsItem());
 }
@@ -138,10 +138,12 @@ void TotemAnimatingWidget::generateLoop(QPointF startPos)
 {
     SelfGenerateBranch * branchTemp = new SelfGenerateBranch();
     branchTemp->setAngelParameters(-20, 20);
-    branchTemp->setLength(20);
+    branchTemp->setLength(30);
     branchTemp->setGeneratingCount(20);
     branchTemp->setGraphicScene(m_totemGraphicsScene_);
+    m_selfGenerateAnimation_->setDuration(100);
     branchTemp->setAnimationObj(m_selfGenerateAnimation_);
+    branchTemp->setLinePosStart(startPos);
 
     branchTemp->startLineGenerating(startPos);
 

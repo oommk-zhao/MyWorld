@@ -1,6 +1,7 @@
 #include <QRandomGenerator>
 #include <QGraphicsScene>
 #include <QtMath>
+#include <QThread>
 #include "selfgeneratebranch.h"
 
 SelfGenerateBranch::SelfGenerateBranch(QObject * parent):
@@ -18,7 +19,6 @@ SelfGenerateBranch::SelfGenerateBranch(QObject * parent):
     m_singleBranchList_()
 {
     m_graphicsLineItem_ = new QGraphicsLineItem(0, 0, 0, 0);
-    setSingleAnimationDuration(500);
 }
 
 
@@ -124,37 +124,34 @@ void SelfGenerateBranch::setGraphicScene(QGraphicsScene * branchScene)
 void SelfGenerateBranch::setAnimationObj(QPropertyAnimation * animationObj)
 {
     m_selfGenerateAnimation_ = animationObj;
+
+    connect(m_selfGenerateAnimation_, SIGNAL(finished()), this, SLOT(generatingBranches()));
 }
 
 
 void SelfGenerateBranch::generatingBranches(void)
 {
-    QPointF startPosTemp = m_linePosStart_;
-
-    m_generatingCount_ = 2;
-
-    while (m_generatingCount_ > 0)
+    if (m_generatingCount_ > 0)
     {
         SingleSimpleBranch * singleTemp = new SingleSimpleBranch(this);
         singleTemp->setAngelParameters(m_angelBegin_, m_angelEnd_);
         singleTemp->setLength(m_length_);
-        singleTemp->startLineGenerating(startPosTemp);
+        singleTemp->startLineGenerating(m_linePosStart_);
+        m_singleBranchList_.append(singleTemp);
 
         m_branchesScene_->addItem(singleTemp->getGraphicsItem());
 
-        m_selfGenerateAnimation_->setTargetObject(singleTemp);
-        m_selfGenerateAnimation_->setPropertyName(QByteArray("m_linePosEnd_"));
-        m_selfGenerateAnimation_->setDuration(5000);
-        m_selfGenerateAnimation_->setStartValue(startPosTemp);
-        m_selfGenerateAnimation_->setEndValue(singleTemp->getLinePosEnd());
-        m_selfGenerateAnimation_->start();
-
-        startPosTemp = singleTemp->getLinePosEnd();
-
-
+        m_linePosStart_ = singleTemp->getLinePosEnd();
 
         m_generatingCount_--;
+
+        m_selfGenerateAnimation_->setTargetObject(singleTemp);
+        m_selfGenerateAnimation_->setPropertyName(QByteArray("m_linePosEnd_"));
+        m_selfGenerateAnimation_->setStartValue(singleTemp->getLinePosStart());
+        m_selfGenerateAnimation_->setEndValue(singleTemp->getLinePosEnd());
+        m_selfGenerateAnimation_->start();
     }
+
 }
 
 
