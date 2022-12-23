@@ -47,15 +47,16 @@ public:
 
     void setSingleAnimationDuration(int durationTime);
 
-    void setAngelParameters(int startAngel, int endAngel);
+    void setAngleParameters(int startAngle, int endAngle);
+    int getSelectedAngle(void);
 
     void setLength(double length);
 
 private:
 
     void generateEndPos(void);
-    double generateEndPosX(int angel);
-    double generateEndPosY(int angel);
+    double generateEndPosX(int Angle);
+    double generateEndPosY(int Angle);
 
     QPointF m_linePosStart_;
     QPointF m_linePosEnd_;
@@ -64,8 +65,11 @@ private:
     // unit = ms
     int m_singleLineDuration_;
 
-    int m_angelBegin_;
-    int m_angelEnd_;
+    int m_AngleBegin_;
+    int m_AngleEnd_;
+
+    int m_selectedAngle_;
+
     double m_length_;
 
 signals:

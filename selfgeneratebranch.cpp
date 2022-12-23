@@ -10,14 +10,20 @@ SelfGenerateBranch::SelfGenerateBranch(QObject * parent):
     m_linePosEnd_(),
     m_graphicsLineItem_(nullptr),
     m_singleLineDuration_(0),
-    m_angelBegin_(0),
-    m_angelEnd_(0),
+    m_baseAngle_(0),
+    m_angleMinus_(0),
+    m_anglePlus_(0),
     m_length_(40),
-    m_generatingCount_(0),
+    m_generationCount_(0),
     m_selfGenerateAnimation_(nullptr),
     m_branchesScene_(nullptr),
     m_singleBranchList_()
 {
+    /* Each branch shall have its own Animation object */
+    /* Each Animation object means one independent Animation generation */
+    m_selfGenerateAnimation_ = new QPropertyAnimation(this);
+    connect(m_selfGenerateAnimation_, SIGNAL(finished()), this, SLOT(singleenerationStep()));
+
     m_graphicsLineItem_ = new QGraphicsLineItem(0, 0, 0, 0);
 }
 
@@ -96,10 +102,11 @@ void SelfGenerateBranch::setSingleAnimationDuration(int durationTime)
 }
 
 
-void SelfGenerateBranch::setAngelParameters(int startAngel, int endAngel)
+void SelfGenerateBranch::setAngleParameters(int baseAngle, int minusAngle, int plusAngle)
 {
-    m_angelBegin_ = startAngel;
-    m_angelEnd_ = endAngel;
+    m_baseAngle_ = baseAngle % 360;
+    m_angleMinus_ = (baseAngle + minusAngle) % 360;
+    m_anglePlus_ = (baseAngle + plusAngle) % 360;
 }
 
 
@@ -111,7 +118,8 @@ void SelfGenerateBranch::setLength(double length)
 
 void SelfGenerateBranch::setGeneratingCount(int count)
 {
-    m_generatingCount_ = count;
+    m_generationCount_ = count;
+    m_currentGeneration_ = 0;
 }
 
 
@@ -121,36 +129,87 @@ void SelfGenerateBranch::setGraphicScene(QGraphicsScene * branchScene)
 }
 
 
-void SelfGenerateBranch::setAnimationObj(QPropertyAnimation * animationObj)
+double SelfGenerateBranch::getGenerationProcess(void)
 {
-    m_selfGenerateAnimation_ = animationObj;
+    float currentProcess = 0.0;
 
-    connect(m_selfGenerateAnimation_, SIGNAL(finished()), this, SLOT(generatingBranches()));
+    // Here is the int devide int, the result is int
+    // But, both value shall not be the float or double
+    // improve the algorithm, but not simply change from int to the double/float
+    currentProcess = 1.0 - static_cast<float>(m_currentGeneration_) / m_generationCount_;
+
+    return currentProcess;
 }
 
 
+void SelfGenerateBranch::singleenerationStep(void)
+{
+    if (m_generationCount_ > m_currentGeneration_)
+    {
+        generatingBranches();
+    }
+}
+
+
+// Add "connect" function here, to connect leaf generation.
 void SelfGenerateBranch::generatingBranches(void)
 {
-    if (m_generatingCount_ > 0)
-    {
-        SingleSimpleBranch * singleTemp = new SingleSimpleBranch(this);
-        singleTemp->setAngelParameters(m_angelBegin_, m_angelEnd_);
-        singleTemp->setLength(m_length_);
-        singleTemp->startLineGenerating(m_linePosStart_);
-        m_singleBranchList_.append(singleTemp);
+    SingleSimpleBranch * singleTemp = new SingleSimpleBranch(this);
 
-        m_branchesScene_->addItem(singleTemp->getGraphicsItem());
+    int angleMinusTemp = m_baseAngle_ + m_angleMinus_;
+    int anglePlusTemp = m_baseAngle_ + m_anglePlus_;
 
-        m_linePosStart_ = singleTemp->getLinePosEnd();
+    singleTemp->setAngleParameters(angleMinusTemp, anglePlusTemp);
+    int selectedAngleTemp = singleTemp->getSelectedAngle();
 
-        m_generatingCount_--;
+    singleTemp->setLength(m_length_);
+    singleTemp->startLineGenerating(m_linePosStart_);
+    m_singleBranchList_.append(singleTemp);
 
-        m_selfGenerateAnimation_->setTargetObject(singleTemp);
-        m_selfGenerateAnimation_->setPropertyName(QByteArray("m_linePosEnd_"));
-        m_selfGenerateAnimation_->setStartValue(singleTemp->getLinePosStart());
-        m_selfGenerateAnimation_->setEndValue(singleTemp->getLinePosEnd());
-        m_selfGenerateAnimation_->start();
-    }
+    m_branchesScene_->addItem(singleTemp->getGraphicsItem());
+
+    m_linePosStart_ = singleTemp->getLinePosEnd();
+
+    m_currentGeneration_++;
+
+    m_selfGenerateAnimation_->setTargetObject(singleTemp);
+    m_selfGenerateAnimation_->setPropertyName(QByteArray("m_linePosEnd_"));
+    m_selfGenerateAnimation_->setStartValue(singleTemp->getLinePosStart());
+    m_selfGenerateAnimation_->setEndValue(singleTemp->getLinePosEnd());
+    m_selfGenerateAnimation_->start();
+
+    /* if generated new leaf then-> */
+    //generateLeafBranch(m_linePosEnd_, selectedAngleTemp, this);
+
+}
+
+
+void SelfGenerateBranch::generateLeafBranch(QPointF startPos,  int parentSelectedAngle,
+                                            SelfGenerateBranch * parentBranch)
+{
+    // This branch base Angle is depended on its parent "Single Branch selected Angle"
+    // So that the parameter is from the SingleGenerateBranch
+    // Instead of the SelfGenerateBranch
+
+    SelfGenerateBranch * leafBranch = new SelfGenerateBranch();
+    qDebug() << "here is the parentSelectedAngle : " << parentSelectedAngle << Qt::endl;
+    qDebug() << "here is the m_angleMinus_ : " << m_angleMinus_ << Qt::endl;
+    qDebug() << "here is the m_anglePlus_ : " << m_anglePlus_ << Qt::endl;
+    leafBranch->setAngleParameters(parentSelectedAngle, m_angleMinus_, m_anglePlus_);
+
+    int leafGenerationCount = m_generationCount_ - m_currentGeneration_;
+    leafBranch->setGeneratingCount(leafGenerationCount);
+    leafBranch->setGraphicScene(m_branchesScene_);
+    leafBranch->setLinePosStart(startPos);
+
+    double leafLength = m_length_ * getGenerationProcess();
+    qDebug() << "The Process is here: " << getGenerationProcess() << Qt::endl;
+
+    qDebug() << "The Length is here: " << leafLength << Qt::endl;
+    leafBranch->setLength(leafLength);
+
+    emit signalNewBranch(leafBranch);
+
 
 }
 

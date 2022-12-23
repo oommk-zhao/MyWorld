@@ -16,7 +16,7 @@
 //    and forward it to the Scene
 
 // 2. decide whether to generate new branch
-//    set the parameters "length", "angel", "count" for the new branch
+//    set the parameters "length", "Angle", "count" for the new branch
 
 // 3. execute the main loop of the generating
 //    and each branch will end itself when the "count" is at the end
@@ -25,6 +25,14 @@
 
 // ?5. pass QPropertyAnimation to all sub branch object,
 //     to active the animation
+
+// new update -
+//     This widget is the object of the tree itself
+//     For convenient, combined the tree object inside this widget
+//     If improved, could take this tree object outside
+
+//  TBD: how to manage the SelfGenerateBranch list
+//       for all its leaves
 
 
 class TotemAnimatingWidget : public QWidget
@@ -48,15 +56,17 @@ public slots:
 
     void startGenerating(void);
 
+    void generateLeaves(SelfGenerateBranch *);
+
 private:
 
     void generateBaseView(void);
+
+    /* This is for the root */
     void generateLoop(QPointF startPos);
 
     int m_generatingCount_;
 
-    int m_startAngel_;
-    int m_endAngel_;
     int m_singleLineLength_;
 
     // this is the ground/grand line
@@ -64,8 +74,6 @@ private:
 
     QGraphicsScene * m_totemGraphicsScene_;
     QGraphicsView * m_totemGraphicsView_;
-
-    QPropertyAnimation * m_selfGenerateAnimation_;
 
     QList<SelfGenerateBranch*> m_selfGenrateBranches_;
 

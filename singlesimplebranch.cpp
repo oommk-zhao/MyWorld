@@ -9,8 +9,9 @@ SingleSimpleBranch::SingleSimpleBranch(QObject * parent):
     m_linePosEnd_(),
     m_graphicsLineItem_(nullptr),
     m_singleLineDuration_(0),
-    m_angelBegin_(0),
-    m_angelEnd_(0),
+    m_AngleBegin_(0),
+    m_AngleEnd_(0),
+    m_selectedAngle_(0),
     m_length_(40)
 {
     m_graphicsLineItem_ = new QGraphicsLineItem(0, 0, 0, 0);
@@ -92,10 +93,27 @@ void SingleSimpleBranch::setSingleAnimationDuration(int durationTime)
 }
 
 
-void SingleSimpleBranch::setAngelParameters(int startAngel, int endAngel)
+void SingleSimpleBranch::setAngleParameters(int startAngle, int endAngle)
 {
-    m_angelBegin_ = startAngel;
-    m_angelEnd_ = endAngel;
+    m_AngleBegin_ = startAngle;
+    m_AngleEnd_ = endAngle;
+
+    int inputAngleBegin = m_AngleBegin_;
+    int inputAngleEnd = m_AngleEnd_;
+
+    if (m_AngleBegin_ > m_AngleEnd_)
+    {
+        inputAngleBegin = inputAngleEnd;
+        inputAngleEnd = inputAngleBegin;
+    }
+
+    m_selectedAngle_ = QRandomGenerator::global()->bounded(inputAngleBegin, inputAngleEnd);
+}
+
+
+int SingleSimpleBranch::getSelectedAngle(void)
+{
+    return m_selectedAngle_;
 }
 
 
@@ -111,40 +129,37 @@ void SingleSimpleBranch::generateEndPos(void)
     double targetEndPosX = m_linePosStart_.x();
     double targetEndPosY = m_linePosStart_.y();
 
-    int angel = 0;
-    angel = QRandomGenerator::global()->bounded(m_angelBegin_, m_angelEnd_);
-
-    targetEndPosX = generateEndPosX(angel);
-    targetEndPosY = generateEndPosY(angel);
+    targetEndPosX = generateEndPosX(m_selectedAngle_);
+    targetEndPosY = generateEndPosY(m_selectedAngle_);
 
     setLinePosEnd(QPointF(targetEndPosX, targetEndPosY));
 
 }
 
 
-double SingleSimpleBranch::generateEndPosX(int angel)
+double SingleSimpleBranch::generateEndPosX(int Angle)
 {
     double targetEndPosX = m_linePosStart_.x();
 
-    double targetDelta = m_length_ * qSin(qDegreesToRadians(angel));
+    double targetDelta = m_length_ * qSin(qDegreesToRadians(Angle));
 
     targetEndPosX += targetDelta;
 
-    qDebug() << "random target X :  " << targetEndPosX << "  random angel : " << angel << Qt::endl;
+    qDebug() << "random target X :  " << targetEndPosX << "  random Angle : " << Angle << Qt::endl;
 
     return targetEndPosX;
 }
 
 
-double SingleSimpleBranch::generateEndPosY(int angel)
+double SingleSimpleBranch::generateEndPosY(int Angle)
 {
     double targetEndPosY = m_linePosStart_.y();
 
-    double targetDelta = m_length_ * qCos(qDegreesToRadians(angel)) * -1;
+    double targetDelta = m_length_ * qCos(qDegreesToRadians(Angle)) * -1;
 
     targetEndPosY += targetDelta;
 
-    qDebug() << "random target Y :  " << targetEndPosY << "  random angel : " << angel << Qt::endl;
+    qDebug() << "random target Y :  " << targetEndPosY << "  random Angle : " << Angle << Qt::endl;
 
 
     return targetEndPosY;

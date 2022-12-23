@@ -53,7 +53,7 @@ public:
 
     void setSingleAnimationDuration(int durationTime);
 
-    void setAngelParameters(int startAngel, int endAngel);
+    void setAngleParameters(int baseAngle, int startAngle, int endAngle);
 
     void setLength(double length);
 
@@ -61,11 +61,29 @@ public:
 
     void setGraphicScene(QGraphicsScene * branchScene);
 
-    void setAnimationObj(QPropertyAnimation * animationObj);
+    // This return the current process of generation
+    // the return is useful for when need calculation the value of parameter,
+    // which will be passed to its leaves.
+    // The return value is a double, tell the rest rate of the whole generation
+    double getGenerationProcess(void);
+
+signals:
+
+    /* the life itself shall decide which direction for its own next generation! */
+    /* at the mean time, the outside environment decide whether its generation grown. */
+    /* the passing object is more like the seed */
+    void signalNewBranch(SelfGenerateBranch *);
 
 private slots:
 
+    void singleenerationStep(void);
+
     void generatingBranches(void);
+
+    /* Using parameter instead of Object here */
+    /* To indicate the properites of next generation */
+    void generateLeafBranch(QPointF startPos,  int parentSelectedAngle,
+                            SelfGenerateBranch * parentBranch);
 
 private:
 
@@ -76,10 +94,21 @@ private:
     // unit = ms
     int m_singleLineDuration_;
 
-    int m_angelBegin_;
-    int m_angelEnd_;
+    int m_angleMinus_;
+    int m_anglePlus_;
+    int m_baseAngle_;
+
+    // each single branch length
     double m_length_;
-    int m_generatingCount_;
+
+    // indicate whole generation count
+    int m_generationCount_;
+
+    // indicate current generation
+    // start from 0
+    // to the value of the m_generationCount_
+    int m_currentGeneration_;
+
 
     QPropertyAnimation * m_selfGenerateAnimation_;
 

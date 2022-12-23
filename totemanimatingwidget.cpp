@@ -7,13 +7,10 @@
 TotemAnimatingWidget::TotemAnimatingWidget(QWidget *parent):
     QWidget(parent),
     m_generatingCount_(0),
-    m_startAngel_(0),
-    m_endAngel_(0),
     m_singleLineLength_(0),
     m_baseBranch_(nullptr),
     m_totemGraphicsScene_(nullptr),
     m_totemGraphicsView_(nullptr),
-    m_selfGenerateAnimation_(nullptr),
     m_selfGenrateBranches_()
 {
     initialization();
@@ -40,11 +37,7 @@ TotemAnimatingWidget::~TotemAnimatingWidget()
         m_totemGraphicsView_ = nullptr;
     }
 
-    if(m_selfGenerateAnimation_ != nullptr)
-    {
-        delete m_selfGenerateAnimation_;
-        m_selfGenerateAnimation_ = nullptr;
-    }
+
 
     for (SelfGenerateBranch * branchIt : m_selfGenrateBranches_)
     {
@@ -68,8 +61,6 @@ void TotemAnimatingWidget::showWidget(void)
 void TotemAnimatingWidget::initialization(void)
 {
     m_generatingCount_ = 0;
-    m_startAngel_ = 0;
-    m_endAngel_ = 0;
     m_singleLineLength_ = 0;
 
     this->setAutoFillBackground(true);
@@ -84,8 +75,6 @@ void TotemAnimatingWidget::initialization(void)
     m_totemGraphicsView_ = new QGraphicsView(this);
     m_totemGraphicsView_->setGeometry(0, 0, 1024, 768);
     m_totemGraphicsView_->setScene(m_totemGraphicsScene_);
-
-    m_selfGenerateAnimation_ = new QPropertyAnimation(this);
 
     m_selfGenrateBranches_.clear();
 
@@ -108,7 +97,7 @@ void TotemAnimatingWidget::stopAnimation(void)
 
 QPointF TotemAnimatingWidget::getMainBranchStartPos(void)
 {
-
+    return QPointF();
 }
 
 
@@ -137,20 +126,34 @@ void TotemAnimatingWidget::generateBaseView(void)
 void TotemAnimatingWidget::generateLoop(QPointF startPos)
 {
     SelfGenerateBranch * branchTemp = new SelfGenerateBranch();
-    branchTemp->setAngelParameters(-20, 20);
+
+    // The angle here is minus and plus angle.
+    // for example, base 0, minus -20, plus 20
+    // means legel angle value is from -20 to 20
+    branchTemp->setAngleParameters(0, -20, 20);
+
     branchTemp->setLength(30);
-    branchTemp->setGeneratingCount(20);
+    branchTemp->setGeneratingCount(3);
     branchTemp->setGraphicScene(m_totemGraphicsScene_);
-    m_selfGenerateAnimation_->setDuration(100);
-    branchTemp->setAnimationObj(m_selfGenerateAnimation_);
+
     branchTemp->setLinePosStart(startPos);
 
+    connect(branchTemp, SIGNAL(signalNewBranch(SelfGenerateBranch *)), this, SLOT(generateLeaves(SelfGenerateBranch *)));
+
+    m_selfGenrateBranches_.push_back(branchTemp);
     branchTemp->startLineGenerating(startPos);
 
 
 }
 
 
+void TotemAnimatingWidget::generateLeaves(SelfGenerateBranch * leafBranch)
+{
+    connect(leafBranch, SIGNAL(signalNewBranch(SelfGenerateBranch *)), this, SLOT(generateLeaves(SelfGenerateBranch *)));
+
+    m_selfGenrateBranches_.push_back(leafBranch);
+    leafBranch->startLineGenerating(leafBranch->getLinePosStart());
+}
 
 
 
