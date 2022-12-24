@@ -133,7 +133,7 @@ void TotemAnimatingWidget::generateLoop(QPointF startPos)
     branchTemp->setAngleParameters(0, -20, 20);
 
     branchTemp->setLength(30);
-    branchTemp->setGeneratingCount(3);
+    branchTemp->setGeneratingCount(5);
     branchTemp->setGraphicScene(m_totemGraphicsScene_);
 
     branchTemp->setLinePosStart(startPos);

@@ -92,7 +92,7 @@ void SelfGenerateBranch::setGraphicsLine(qreal x1, qreal y1, qreal x2, qreal y2)
 void SelfGenerateBranch::startLineGenerating(QPointF startPos)
 {
     setLinePosStart(startPos);
-    generatingBranches();
+    singleenerationStep();
 }
 
 
@@ -179,7 +179,7 @@ void SelfGenerateBranch::generatingBranches(void)
     m_selfGenerateAnimation_->start();
 
     /* if generated new leaf then-> */
-    //generateLeafBranch(m_linePosEnd_, selectedAngleTemp, this);
+    generateLeafBranch(m_linePosEnd_, selectedAngleTemp, this);
 
 }
 
