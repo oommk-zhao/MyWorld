@@ -144,6 +144,7 @@ double SelfGenerateBranch::getGenerationProcess(void)
 
 void SelfGenerateBranch::singleenerationStep(void)
 {
+    qDebug() << "the generation count : " << m_generationCount_ << "  |  current generation :" << m_currentGeneration_ << Qt::endl;
     if (m_generationCount_ > m_currentGeneration_)
     {
         generatingBranches();
@@ -192,9 +193,6 @@ void SelfGenerateBranch::generateLeafBranch(QPointF startPos,  int parentSelecte
     // Instead of the SelfGenerateBranch
 
     SelfGenerateBranch * leafBranch = new SelfGenerateBranch();
-    qDebug() << "here is the parentSelectedAngle : " << parentSelectedAngle << Qt::endl;
-    qDebug() << "here is the m_angleMinus_ : " << m_angleMinus_ << Qt::endl;
-    qDebug() << "here is the m_anglePlus_ : " << m_anglePlus_ << Qt::endl;
     leafBranch->setAngleParameters(parentSelectedAngle, m_angleMinus_, m_anglePlus_);
 
     int leafGenerationCount = m_generationCount_ - m_currentGeneration_;
@@ -203,9 +201,6 @@ void SelfGenerateBranch::generateLeafBranch(QPointF startPos,  int parentSelecte
     leafBranch->setLinePosStart(startPos);
 
     double leafLength = m_length_ * getGenerationProcess();
-    qDebug() << "The Process is here: " << getGenerationProcess() << Qt::endl;
-
-    qDebug() << "The Length is here: " << leafLength << Qt::endl;
     leafBranch->setLength(leafLength);
 
     emit signalNewBranch(leafBranch);

@@ -94,9 +94,9 @@ private:
     // unit = ms
     int m_singleLineDuration_;
 
+    int m_baseAngle_;
     int m_angleMinus_;
     int m_anglePlus_;
-    int m_baseAngle_;
 
     // each single branch length
     double m_length_;

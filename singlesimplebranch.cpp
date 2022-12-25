@@ -103,8 +103,8 @@ void SingleSimpleBranch::setAngleParameters(int startAngle, int endAngle)
 
     if (m_AngleBegin_ > m_AngleEnd_)
     {
-        inputAngleBegin = inputAngleEnd;
-        inputAngleEnd = inputAngleBegin;
+        inputAngleBegin = m_AngleEnd_;
+        inputAngleEnd = m_AngleBegin_;
     }
 
     m_selectedAngle_ = QRandomGenerator::global()->bounded(inputAngleBegin, inputAngleEnd);
@@ -145,8 +145,6 @@ double SingleSimpleBranch::generateEndPosX(int Angle)
 
     targetEndPosX += targetDelta;
 
-    qDebug() << "random target X :  " << targetEndPosX << "  random Angle : " << Angle << Qt::endl;
-
     return targetEndPosX;
 }
 
@@ -158,9 +156,6 @@ double SingleSimpleBranch::generateEndPosY(int Angle)
     double targetDelta = m_length_ * qCos(qDegreesToRadians(Angle)) * -1;
 
     targetEndPosY += targetDelta;
-
-    qDebug() << "random target Y :  " << targetEndPosY << "  random Angle : " << Angle << Qt::endl;
-
 
     return targetEndPosY;
 }
