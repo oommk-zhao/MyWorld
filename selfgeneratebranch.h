@@ -10,23 +10,6 @@
 
 #include "singlesimplebranch.h"
 
-// Responsibility: Done
-
-// this is the object of one entire whole branch.
-// from the start point, to the end of the whole generation.
-// BUT, only for the one line of generated branch.
-
-// and this shall notify this parent to generate a new branch during the loop
-
-// and return the end single branch/leaf, its graphics item
-
-//-----------------------------
-// the following are pending
-// change this object to be a container
-// to be the maintainer of the single simple branch list
-// to return the generated looping graphics branch
-// to do the loop
-// to adjust the parameters of the looping
 
 class SelfGenerateBranch : public QObject
 {
@@ -66,6 +49,9 @@ public:
     // which will be passed to its leaves.
     // The return value is a double, tell the rest rate of the whole generation
     double getGenerationProcess(void);
+
+    // TBD Interfact/method
+    double getNextGenerationLength(void);
 
 signals:
 

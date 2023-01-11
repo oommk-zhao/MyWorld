@@ -179,9 +179,9 @@ void SelfGenerateBranch::generatingBranches(void)
     m_selfGenerateAnimation_->start();
 
     /* if generated new leaf then-> */
-    if(m_generationCount_ > 6)
+    if(m_currentGeneration_ > 3)
     {
-        generateLeafBranch(m_linePosEnd_, selectedAngleTemp, this);
+        generateLeafBranch(m_linePosStart_, selectedAngleTemp, this);
     }
 
 }
@@ -202,9 +202,8 @@ void SelfGenerateBranch::generateLeafBranch(QPointF startPos,  int parentSelecte
     leafBranch->setGraphicScene(m_branchesScene_);
     leafBranch->setLinePosStart(startPos);
 
-    double leafLength = m_length_ * getGenerationProcess();
+    double leafLength = m_length_ - m_currentGeneration_ - 5;
     leafBranch->setLength(leafLength);
-    qDebug() << "startPos : " << startPos << Qt::endl;
 
     emit signalNewBranch(leafBranch);
 

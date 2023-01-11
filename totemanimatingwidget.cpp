@@ -109,6 +109,8 @@ void TotemAnimatingWidget::setMainBranchStartPos(QPointF linePosStart)
 
 void TotemAnimatingWidget::startGenerating(void)
 {
+    slotClearBranches();
+    generateBaseView();
     QPointF startPos(512, 650);
     generateLoop(startPos);
 }
@@ -133,7 +135,7 @@ void TotemAnimatingWidget::generateLoop(QPointF startPos)
     branchTemp->setAngleParameters(0, -20, 20);
 
     branchTemp->setLength(30);
-    branchTemp->setGeneratingCount(8);
+    branchTemp->setGeneratingCount(20);
     branchTemp->setGraphicScene(m_totemGraphicsScene_);
 
     branchTemp->setLinePosStart(startPos);
@@ -153,11 +155,14 @@ void TotemAnimatingWidget::generateLeaves(SelfGenerateBranch * leafBranch)
 
     m_selfGenrateBranches_.push_back(leafBranch);
     leafBranch->startLineGenerating(leafBranch->getLinePosStart());
-    qDebug() << "Pos start : " << leafBranch->getLinePosStart() << Qt::endl;
 }
 
 
-
+void TotemAnimatingWidget::slotClearBranches(void)
+{
+    m_selfGenrateBranches_.clear();
+    m_totemGraphicsScene_->clear();
+}
 
 
 

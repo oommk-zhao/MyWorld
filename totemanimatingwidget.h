@@ -10,31 +10,6 @@
 #include "selfgeneratebranch.h"
 
 
-// Responsibility (not very clear yet)
-
-// 1. for each turn of loop, get the generated graphic item
-//    and forward it to the Scene
-
-// 2. decide whether to generate new branch
-//    set the parameters "length", "Angle", "count" for the new branch
-
-// 3. execute the main loop of the generating
-//    and each branch will end itself when the "count" is at the end
-
-// 4. hold the graphic scene and view of automatic generated totem
-
-// ?5. pass QPropertyAnimation to all sub branch object,
-//     to active the animation
-
-// new update -
-//     This widget is the object of the tree itself
-//     For convenient, combined the tree object inside this widget
-//     If improved, could take this tree object outside
-
-//  TBD: how to manage the SelfGenerateBranch list
-//       for all its leaves
-
-
 class TotemAnimatingWidget : public QWidget
 {
     Q_OBJECT
@@ -57,6 +32,14 @@ public slots:
     void startGenerating(void);
 
     void generateLeaves(SelfGenerateBranch *);
+
+    void slotClearBranches(void);
+
+private slots:
+
+    // TBD slots
+    void slotResumeBranchGenerating(void);
+    void slotStopBranchGenerating(void);
 
 private:
 
