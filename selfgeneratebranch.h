@@ -65,7 +65,7 @@ signals:
 
 private slots:
 
-    void singleenerationStep(void);
+    void singleGenerationStep(void);
 
     void generatingBranches(void);
 

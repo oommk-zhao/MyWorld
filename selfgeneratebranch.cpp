@@ -22,7 +22,7 @@ SelfGenerateBranch::SelfGenerateBranch(QObject * parent):
     /* Each branch shall have its own Animation object */
     /* Each Animation object means one independent Animation generation */
     m_selfGenerateAnimation_ = new QPropertyAnimation(this);
-    connect(m_selfGenerateAnimation_, SIGNAL(finished()), this, SLOT(singleenerationStep()));
+    connect(m_selfGenerateAnimation_, SIGNAL(finished()), this, SLOT(singleGenerationStep()));
 
     m_graphicsLineItem_ = new QGraphicsLineItem(0, 0, 0, 0);
 }
@@ -92,7 +92,7 @@ void SelfGenerateBranch::setGraphicsLine(qreal x1, qreal y1, qreal x2, qreal y2)
 void SelfGenerateBranch::startLineGenerating(QPointF startPos)
 {
     setLinePosStart(startPos);
-    singleenerationStep();
+    singleGenerationStep();
 }
 
 
@@ -152,7 +152,7 @@ double SelfGenerateBranch::getNextGenerationLength(void)
 }
 
 
-void SelfGenerateBranch::singleenerationStep(void)
+void SelfGenerateBranch::singleGenerationStep(void)
 {
     if (m_generationCount_ > m_currentGeneration_)
     {
