@@ -7,7 +7,8 @@
 #include <QGraphicsLineItem>
 #include <QPropertyAnimation>
 
-
+// Task
+// 1. Refactor
 
 class SingleSimpleBranch : public QObject
 {

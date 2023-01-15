@@ -165,4 +165,18 @@ void TotemAnimatingWidget::slotClearBranches(void)
 }
 
 
+void TotemAnimatingWidget::slotResumeBranchGenerating(void)
+{
+
+}
+
+
+void TotemAnimatingWidget::slotStopBranchGenerating(void)
+{
+
+}
+
+
+
+
 

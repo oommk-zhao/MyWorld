@@ -142,6 +142,16 @@ double SelfGenerateBranch::getGenerationProcess(void)
 }
 
 
+double SelfGenerateBranch::getNextGenerationLength(void)
+{
+    // How to define the reasonable Leaf Length?
+    // Shall consider the situations following:
+    // 1.Root and Branch
+    // 2.Leaf and endLeafPoint (might need )
+    return 0.0;
+}
+
+
 void SelfGenerateBranch::singleenerationStep(void)
 {
     if (m_generationCount_ > m_currentGeneration_)

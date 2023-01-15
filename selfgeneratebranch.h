@@ -10,6 +10,9 @@
 
 #include "singlesimplebranch.h"
 
+// Task:
+// 1. Finish the TBD slots
+// 2. Refactor
 
 class SelfGenerateBranch : public QObject
 {

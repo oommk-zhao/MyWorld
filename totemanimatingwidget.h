@@ -9,6 +9,9 @@
 
 #include "selfgeneratebranch.h"
 
+// Task：
+// 1. Finish the TBD slots
+// 2. Refactor
 
 class TotemAnimatingWidget : public QWidget
 {
