@@ -42,6 +42,8 @@ private slots:
 
     // TBD slots
     void slotResumeBranchGenerating(void);
+
+
     void slotStopBranchGenerating(void);
 
 private:

@@ -38,7 +38,10 @@ public:
 
     void setSingleAnimationDuration(int durationTime);
 
+    // this will not be used for now
     void setAngleParameters(int startAngle, int endAngle);
+
+    void setAngle(int angle);
     int getSelectedAngle(void);
 
     void setLength(double length);

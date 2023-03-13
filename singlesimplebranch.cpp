@@ -111,6 +111,12 @@ void SingleSimpleBranch::setAngleParameters(int startAngle, int endAngle)
 }
 
 
+void SingleSimpleBranch::setAngle(int angle)
+{
+    m_selectedAngle_ = angle;
+}
+
+
 int SingleSimpleBranch::getSelectedAngle(void)
 {
     return m_selectedAngle_;

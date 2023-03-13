@@ -132,10 +132,12 @@ void TotemAnimatingWidget::generateLoop(QPointF startPos)
     // The angle here is minus and plus angle.
     // for example, base 0, minus -20, plus 20
     // means legel angle value is from -20 to 20
-    branchTemp->setAngleParameters(0, -20, 20);
+    branchTemp->setAngleParameters(0, -50, 50);
 
     branchTemp->setLength(30);
     branchTemp->setGeneratingCount(20);
+    branchTemp->setNoGenerationCount(3);
+    branchTemp->setIsRootBranch(true);
     branchTemp->setGraphicScene(m_totemGraphicsScene_);
 
     branchTemp->setLinePosStart(startPos);
@@ -160,6 +162,7 @@ void TotemAnimatingWidget::generateLeaves(SelfGenerateBranch * leafBranch)
 
 void TotemAnimatingWidget::slotClearBranches(void)
 {
+    slotStopBranchGenerating();
     m_selfGenrateBranches_.clear();
     m_totemGraphicsScene_->clear();
 }
@@ -173,7 +176,10 @@ void TotemAnimatingWidget::slotResumeBranchGenerating(void)
 
 void TotemAnimatingWidget::slotStopBranchGenerating(void)
 {
-
+    for (SelfGenerateBranch* branchIt : m_selfGenrateBranches_)
+    {
+        branchIt->stopAnimation();
+    }
 }
 
 

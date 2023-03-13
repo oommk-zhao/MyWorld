@@ -8,13 +8,18 @@ SelfGenerateBranch::SelfGenerateBranch(QObject * parent):
     QObject(parent),
     m_linePosStart_(),
     m_linePosEnd_(),
-    m_graphicsLineItem_(nullptr),
     m_singleLineDuration_(0),
     m_baseAngle_(0),
     m_angleMinus_(0),
     m_anglePlus_(0),
     m_length_(40),
     m_generationCount_(0),
+    m_state_(GENERATION_STOPPED),
+    m_currentGeneration_(0),
+    m_noGenerationCount_(0),
+    m_isRootBranch_(false),
+    m_lastBranchAngle_(0),
+    m_graphicsLineItem_(nullptr),
     m_selfGenerateAnimation_(nullptr),
     m_branchesScene_(nullptr),
     m_singleBranchList_()
@@ -105,8 +110,8 @@ void SelfGenerateBranch::setSingleAnimationDuration(int durationTime)
 void SelfGenerateBranch::setAngleParameters(int baseAngle, int minusAngle, int plusAngle)
 {
     m_baseAngle_ = baseAngle % 360;
-    m_angleMinus_ = (baseAngle + minusAngle) % 360;
-    m_anglePlus_ = (baseAngle + plusAngle) % 360;
+    m_angleMinus_ = minusAngle % 360;
+    m_anglePlus_ = plusAngle % 360;
 }
 
 
@@ -129,6 +134,30 @@ void SelfGenerateBranch::setGraphicScene(QGraphicsScene * branchScene)
 }
 
 
+int SelfGenerateBranch::getNoGenerationCount(void)
+{
+    return m_noGenerationCount_;
+}
+
+
+void SelfGenerateBranch::setNoGenerationCount(int count)
+{
+    m_noGenerationCount_ = count;
+}
+
+
+bool SelfGenerateBranch::isRootBranch(void)
+{
+    return m_isRootBranch_;
+}
+
+
+void SelfGenerateBranch::setIsRootBranch(bool isRoot)
+{
+    m_isRootBranch_ = isRoot;
+}
+
+
 double SelfGenerateBranch::getGenerationProcess(void)
 {
     float currentProcess = 0.0;
@@ -142,13 +171,85 @@ double SelfGenerateBranch::getGenerationProcess(void)
 }
 
 
-double SelfGenerateBranch::getNextGenerationLength(void)
+double SelfGenerateBranch::getDynamicLength(void)
 {
     // How to define the reasonable Leaf Length?
     // Shall consider the situations following:
     // 1.Root and Branch
     // 2.Leaf and endLeafPoint (might need )
-    return 0.0;
+    double getDynamicLength = 0.0;
+    getDynamicLength = m_length_ * getGenerationProcess();
+
+    return getDynamicLength;
+}
+
+
+void SelfGenerateBranch::setDynamicAngleParametersForLeaves(SingleSimpleBranch * singleBranchTemp)
+{
+    // Calculate the angleMinus and anglePlus base on the m_baseAngle
+    // There shall be the main direction/shiftment towards the top of the screen
+
+    // Current found no suitable method of the QRandomGenerator
+    // The work around solution is to generate two numbers and have their average
+    // to implement the shiftment of the random algorithm
+
+    // 1. Der Kennzeichenwinkel(beide Richtung)...
+    // 2. Der Ausgleichwinkel...
+    // 3. Der Ausgleichwinkel ist das DNA alles Asts/Blatts...
+
+    // targetAngle = randomGenerate(angle) + shiftmentCalculation(AngelShiftment)
+    // currently do this inside this method, instead of create and call two methods
+
+    // The algorithm, please check the file HandNote_20230307.jpg
+
+    /* ------------------------------------------------------------------------- */
+    // randomGenerate(angle)
+    int angleMinusTemp = m_baseAngle_ + m_angleMinus_;
+    int anglePlusTemp = m_baseAngle_ + m_anglePlus_;
+
+    if (angleMinusTemp > anglePlusTemp)
+    {
+        angleMinusTemp = m_baseAngle_ + m_anglePlus_;
+        anglePlusTemp = m_baseAngle_ + m_angleMinus_;;
+    }
+
+    int randomGenVar = 0;
+
+    if ( (m_currentGeneration_ > m_noGenerationCount_) || !m_isRootBranch_ )
+    {
+        randomGenVar = QRandomGenerator::global()->bounded(angleMinusTemp, anglePlusTemp);
+    }
+
+    // shiftmentCalculation(baseShiftment)
+    int shiftmentAngle = 0;
+    int upPart = ( qAbs(m_angleMinus_) * qAbs(m_lastBranchAngle_) ) * 0.10;
+    int bottomPart = 90 + qAbs(m_angleMinus_);
+
+    if( bottomPart != 0)
+    {
+        shiftmentAngle = static_cast<double>(upPart) / bottomPart;
+    }
+    else
+    {
+        shiftmentAngle = 0;
+    }
+
+    int targetAngleVar = 0;
+
+    if( randomGenVar != 0 )
+    {
+        targetAngleVar = randomGenVar + ( -randomGenVar / qAbs(randomGenVar) ) * shiftmentAngle;
+    }
+    singleBranchTemp->setAngle(targetAngleVar);
+
+    qDebug() << "m_angleMinus_ -> " << m_angleMinus_ << " | m_anglePlus_ -> " << m_anglePlus_ <<  " | m_lastBranchAngle_ -> " << m_lastBranchAngle_ <<  " | targetAngleVar -> " << targetAngleVar << Qt::endl;
+
+}
+
+
+void SelfGenerateBranch::stopAnimation(void)
+{
+    this->m_selfGenerateAnimation_->stop();
 }
 
 
@@ -166,13 +267,14 @@ void SelfGenerateBranch::generatingBranches(void)
 {
     SingleSimpleBranch * singleTemp = new SingleSimpleBranch(this);
 
-    int angleMinusTemp = m_baseAngle_ + m_angleMinus_;
-    int anglePlusTemp = m_baseAngle_ + m_anglePlus_;
 
-    singleTemp->setAngleParameters(angleMinusTemp, anglePlusTemp);
-    int selectedAngleTemp = singleTemp->getSelectedAngle();
+    // shall not set angel parameters
+    // instead, call setDynamicAngle...., to calculate the target angle dynamicly
+    //singleTemp->setAngleParameters(angleMinusTemp, anglePlusTemp);
+    setDynamicAngleParametersForLeaves(singleTemp);
+    m_lastBranchAngle_ = singleTemp->getSelectedAngle();
 
-    singleTemp->setLength(m_length_);
+    singleTemp->setLength(getDynamicLength());
     singleTemp->startLineGenerating(m_linePosStart_);
     m_singleBranchList_.append(singleTemp);
 
@@ -189,9 +291,9 @@ void SelfGenerateBranch::generatingBranches(void)
     m_selfGenerateAnimation_->start();
 
     /* if generated new leaf then-> */
-    if(m_currentGeneration_ > 3)
+    if(m_currentGeneration_ > m_noGenerationCount_)
     {
-        generateLeafBranch(m_linePosStart_, selectedAngleTemp, this);
+        generateLeafBranch(m_linePosStart_, m_lastBranchAngle_, this);
     }
 
 }
@@ -209,10 +311,11 @@ void SelfGenerateBranch::generateLeafBranch(QPointF startPos,  int parentSelecte
 
     int leafGenerationCount = m_generationCount_ - m_currentGeneration_;
     leafBranch->setGeneratingCount(leafGenerationCount);
+    leafBranch->setNoGenerationCount(2);
     leafBranch->setGraphicScene(m_branchesScene_);
     leafBranch->setLinePosStart(startPos);
 
-    double leafLength = m_length_ - m_currentGeneration_ - 5;
+    double leafLength = getDynamicLength() + 5;
     leafBranch->setLength(leafLength);
 
     emit signalNewBranch(leafBranch);
