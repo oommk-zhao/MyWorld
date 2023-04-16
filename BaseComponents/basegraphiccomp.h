@@ -5,8 +5,14 @@
 
 class BaseGraphicComponent
 {
+
 public:
     BaseGraphicComponent();
+    virtual ~BaseGraphicComponent();
+
+    virtual void updateGraphics();
+
+
 };
 
 #endif // BASEGRAPHICCOMPONENT_H

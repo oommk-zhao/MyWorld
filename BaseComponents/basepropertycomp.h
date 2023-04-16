@@ -4,8 +4,13 @@
 
 class BasePropertyComp
 {
+
 public:
     BasePropertyComp();
+    virtual ~BasePropertyComp();
+
+    virtual void updateProperty();
+
 };
 
 #endif // BASEPROPERTYCOMP_H
