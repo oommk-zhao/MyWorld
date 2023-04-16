@@ -31,13 +31,36 @@ set(PROJECT_SOURCES
         main.cpp
         logopage.cpp
         logopage.h
-        selfgeneratebranch.cpp
-        selfgeneratebranch.h
-        singlesimplebranch.cpp
-        singlesimplebranch.h
-        totemanimatingwidget.cpp
-        totemanimatingwidget.h
+        eventmanager.h
+        eventmanager.cpp
+        updatemachine.h
+        updatemachine.cpp
+        TotemBranches/selfgeneratebranch.cpp
+        TotemBranches/selfgeneratebranch.h
+        TotemBranches/singlesimplebranch.cpp
+        TotemBranches/singlesimplebranch.h
+        TotemBranches/totemanimatingwidget.cpp
+        TotemBranches/totemanimatingwidget.h
+        BaseComponents/basemapcomp.h
+        BaseComponents/basemapcomp.cpp
+        BaseComponents/baseobject.h
+        BaseComponents/baseobject.cpp
+        BaseComponents/basegraphiccomp.h
+        BaseComponents/basegraphiccomp.cpp
+        BaseComponents/basepropertycomp.h
+        BaseComponents/basepropertycomp.cpp
+        MapComponents/landcomp.h
+        MapComponents/landcomp.cpp
+        MapComponents/landpropertycomp.h
+        MapComponents/landpropertycomp.cpp
+        MapComponents/landgraphiccomp.h
+        MapComponents/landgraphiccomp.cpp
+        MapComponents/landmapcomp.h
+        MapComponents/landmapcomp.cpp
+        CommandPackage/basecommand.h
+        CommandPackage/basecommand.cpp
 )
+
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
     qt_add_executable(TheMyWorld

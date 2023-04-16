@@ -7,7 +7,7 @@
 #include <QPushButton>
 #include <QPointF>
 #include <QList>
-#include "totemanimatingwidget.h"
+#include "TotemBranches/totemanimatingwidget.h"
 
 
 
