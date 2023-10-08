@@ -22,6 +22,8 @@ We now is on the stage of creating the land objects, the Map!
 ---------------------------------------------------------------
 TBD
 [ ] Create Factory for Map Components/Objects (Raw simple implementation)
+
 [ ] Create manager for Map Components/Objects (Raw simple implementation)
+
 [ ] Create simple Land for the first Map!!! (My first piece of my World Land)
 
