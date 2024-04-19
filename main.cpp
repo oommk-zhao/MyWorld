@@ -1,4 +1,4 @@
-#include "logopage.h"
+#include "worldblackboard.h"
 
 #include <QApplication>
 
@@ -18,7 +18,7 @@
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
-    LogoPage w;
-    w.showWidget();
+    WorldBlackBoard w;
+    w.loadLogoWidget();
     return a.exec();
 }

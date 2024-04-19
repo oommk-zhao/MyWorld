@@ -29,12 +29,18 @@ find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Widgets Core Gui REQUIRED)
 
 set(PROJECT_SOURCES
         main.cpp
+        worldblackboard.h
+        worldblackboard.cpp        
         logopage.cpp
         logopage.h
-        eventmanager.h
-        eventmanager.cpp
         updatemachine.h
         updatemachine.cpp
+        EventManager/eventmanager.h
+        EventManager/eventmanager.cpp
+        ObjectsManager/objectsmanager.h
+        ObjectsManager/objectsmanager.cpp
+        GUIManager/worldbgwindow.h
+        GUIManager/worldbgwindow.cpp
         TotemBranches/selfgeneratebranch.cpp
         TotemBranches/selfgeneratebranch.h
         TotemBranches/singlesimplebranch.cpp
@@ -49,8 +55,8 @@ set(PROJECT_SOURCES
         BaseComponents/basegraphiccomp.cpp
         BaseComponents/basepropertycomp.h
         BaseComponents/basepropertycomp.cpp
-        MapComponents/landcomp.h
-        MapComponents/landcomp.cpp
+        MapComponents/landobject.h
+        MapComponents/landobject.cpp
         MapComponents/landpropertycomp.h
         MapComponents/landpropertycomp.cpp
         MapComponents/landgraphiccomp.h
@@ -59,6 +65,8 @@ set(PROJECT_SOURCES
         MapComponents/landmapcomp.cpp
         CommandPackage/basecommand.h
         CommandPackage/basecommand.cpp
+        CommandPackage/commandmanager.h
+        CommandPackage/commandmanager.cpp
 )
 
 

@@ -145,9 +145,11 @@ void SingleSimpleBranch::generateEndPos(void)
 
 double SingleSimpleBranch::generateEndPosX(int Angle)
 {
+    double angleTemp = Angle;
+
     double targetEndPosX = m_linePosStart_.x();
 
-    double targetDelta = m_length_ * qSin(qDegreesToRadians(Angle));
+    double targetDelta = m_length_ * qSin(qDegreesToRadians(angleTemp));
 
     targetEndPosX += targetDelta;
 
@@ -157,9 +159,11 @@ double SingleSimpleBranch::generateEndPosX(int Angle)
 
 double SingleSimpleBranch::generateEndPosY(int Angle)
 {
+    double angleTemp = Angle;
+
     double targetEndPosY = m_linePosStart_.y();
 
-    double targetDelta = m_length_ * qCos(qDegreesToRadians(Angle)) * -1;
+    double targetDelta = m_length_ * qCos(qDegreesToRadians(angleTemp)) * -1;
 
     targetEndPosY += targetDelta;
 

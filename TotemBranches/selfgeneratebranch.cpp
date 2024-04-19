@@ -242,8 +242,6 @@ void SelfGenerateBranch::setDynamicAngleParametersForLeaves(SingleSimpleBranch *
     }
     singleBranchTemp->setAngle(targetAngleVar);
 
-    qDebug() << "m_angleMinus_ -> " << m_angleMinus_ << " | m_anglePlus_ -> " << m_anglePlus_ <<  " | m_lastBranchAngle_ -> " << m_lastBranchAngle_ <<  " | targetAngleVar -> " << targetAngleVar << Qt::endl;
-
 }
 
 

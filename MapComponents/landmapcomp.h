@@ -1,20 +1,25 @@
 #ifndef LANDMAPCOMP_H
 #define LANDMAPCOMP_H
 
+#include "BaseComponents/basemapcomp.h"
 
-class LandMapComp
+class LandMapComp : public BaseMapCompoment
 {
 public:
     LandMapComp();
+    LandMapComp(const LandMapComp &);
+    LandMapComp(LandMapComp &&);
+
+    LandMapComp &operator=(const LandMapComp &);
+    LandMapComp &operator=(LandMapComp &&);
 
     void updateComp();
 
-    //just for creating the property name
-    //type will be modified later
-
-    int m_landType_;
-    int m_landState_;
-
+private:
+    // First make the world map flat
+    // Keep the posibility of extension, the world could be any shape.
+    int mapIndex_;
+    int mapSize_;
 };
 
 #endif // LANDMAPCOMP_H

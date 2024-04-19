@@ -7,7 +7,15 @@ class BaseObject
 {
 
 public:
+
     BaseObject();
+    BaseObject(const BaseObject&);
+    BaseObject(BaseObject&&);
+
+    BaseObject &operator=(const BaseObject&);
+    BaseObject &operator=(BaseObject&&);
+
+
     virtual ~BaseObject();
 
     // not pure virtual yet
