@@ -13,11 +13,20 @@ public:
     LandMapComp &operator=(const LandMapComp &);
     LandMapComp &operator=(LandMapComp &&);
 
+    int posX() const;
+    int poxY() const;
+    void setPosX(int);
+    void setPoxY(int);
+
     void updateComp();
 
 private:
     // First make the world map flat
     // Keep the posibility of extension, the world could be any shape.
+
+    int posX_;
+    int posY_;
+
     int mapIndex_;
     int mapSize_;
 };

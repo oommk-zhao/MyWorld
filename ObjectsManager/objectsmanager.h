@@ -43,11 +43,13 @@ public:
     // How to call the factory generator, is not clear
     // Let's try first
     // And can have refactor
-    BaseObject * createLandObject(void);
+    BaseObject *createLandObject(void);
 
+    // Here is the Trial world creation
+    // We use this class as factory for trail version
+    void createTrialWorld(void);
 
 private:
-
     std::vector<BaseObject *> m_landObjectList_;
 
 };

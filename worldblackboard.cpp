@@ -86,37 +86,7 @@ void WorldBlackBoard::slotLogoPageClosed(void)
 void WorldBlackBoard::loadBasicWorld(void)
 {
     // **************************************************
-    // First try
-    // **************************************************
-    // get map/land components from map/land factory
-    // the GUI update, shall not be considered
-    // the GUI update will do it itself automatically
-
-    // Lets frist test the copy constructor, move constructor, copy operator = and move operator =
-    /*
-    BaseObject* testObject = nullptr;
-    //BaseObject* copyObject = nullptr;
-    BaseObject* moveObject = nullptr;
-    BaseObject* operatorObject = nullptr;
-    BaseObject* moveOperatorObject = nullptr;
-
-    LandObject* testLandObject = nullptr;
-    //LandObject* copyLandObject = nullptr;
-    LandObject* moveLandObject = nullptr;
-    LandObject* operatorLandObject = nullptr;
-    LandObject* moveOperatorLandObject = nullptr;
-
-    testObject = new BaseObject();
-    BaseObject copyObject(*testObject);
-    moveObject = new BaseObject(std::move(*testObject));
-    *operatorObject = copyObject;
-    *moveOperatorObject = std::move(*moveObject);
-*/
-
-    // Copy, move constructor test paseed, keep the test history, currently
-
-    // **************************************************
-    // Second phrsse
+    // Second phrase
     // **************************************************
 
     // Try, to call Object Manager, to create land object
@@ -124,4 +94,10 @@ void WorldBlackBoard::loadBasicWorld(void)
     // for the objects creation and stored
     // No update machine and mechanism is necessary for this phrase
     // Ah, please update the github related plan!!!
+
+    m_objectsManager_p->createTrialWorld();
+
+    // MainWindow->showLand() or MainWidget->showLand() ?
+    // We also need graphic scene and graphic view here for land display/showing.
+    // Then which shall take graphic view and which with graphic scene?
 }
