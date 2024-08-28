@@ -10,10 +10,11 @@ ObjectsManager::~ObjectsManager()
 
 BaseObject *ObjectsManager::createLandObject()
 {
-    LandObject * landObjectTemp = new LandObject();
+    LandObject *landObjectTemp = nullptr;
+    landObjectTemp = new LandObject();
     m_landObjectList_.push_back(landObjectTemp);
 
-    return nullptr;
+    return landObjectTemp;
 }
 
 void ObjectsManager::createTrialWorld(void)
@@ -27,7 +28,24 @@ void ObjectsManager::createTrialWorld(void)
 
     // We need a executable world first!
 
-    int trialLandNumber = 9;
+    // for Trial world
+    // using simple vector with dual loop first
+    // first create row item then next row
+
+    // In trial we try index started with 1 instead of 0
+    // for maintaining friendly
+
+    int trialLandRow = 16;
+    int trialLandColumn = 9;
+
+    for (auto i = 1; i <= trialLandRow; i++) {
+        for (auto j = 1; j <= trialLandColumn; j++) {
+            auto landObject = createLandObject();
+            static_cast<LandObject *>(landObject)->setPosition(i, j);
+            static_cast<LandObject *>(landObject)->setHeight(i);
+            static_cast<LandObject *>(landObject)->setWeight(i);
+        }
+    }
 
     return;
 }

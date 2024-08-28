@@ -50,8 +50,9 @@ public:
     void createTrialWorld(void);
 
 private:
+    // we use vector first here.
+    // Pair is under consideration.
     std::vector<BaseObject *> m_landObjectList_;
-
 };
 
 #endif // OBJECTSMANAGER_H

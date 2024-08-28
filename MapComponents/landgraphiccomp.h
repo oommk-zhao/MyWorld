@@ -3,8 +3,6 @@
 
 #include "BaseComponents/basegraphiccomp.h"
 
-#include <QGraphicsObject>
-
 class LandGraphicComp : public BaseGraphicComponent
 {
 public:
@@ -22,7 +20,8 @@ private:
     // For the reason, there is no QGraphicsStandardItem,
     // Is it necessary to create the standard graphics item for this version?
 
-    //QGraphicsObject graphicItem_;
+    // The QGraphicsObject shall stay at BaseGraphicComponent
+    //QGraphicsObject *graphicItem_;
 };
 
 #endif // LANDGRAPHICCOMP_H

@@ -15,6 +15,14 @@ public:
     LandPropertyComp &operator=(const LandPropertyComp &);
     LandPropertyComp &operator=(LandPropertyComp &&);
 
+    void setDefaultHeight(void);
+    void setDefaultWeight(void);
+
+    int getWeight(void) const;
+    int getHeight(void) const;
+    void setWeight(int weight);
+    void setHeight(int height);
+
 private:
     // has house, has characters, empty and so on
     // data type not-decided

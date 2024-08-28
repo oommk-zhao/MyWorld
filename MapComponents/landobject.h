@@ -25,6 +25,12 @@ public:
     // update contained components
     void updateWholeObject();
 
+    // Trial world work around solution
+    void setPosition(int posX, int poxY);
+
+    void setHeight(int height);
+    void setWeight(int weight);
+
     // private functions/methods
 private:
 
@@ -32,10 +38,14 @@ private:
 
     // private variables
 private:
-
     // Make all components first be the pointer
     // Depends on the performance
     // Changes them to the Objects, if needed
+
+    // Trial version note
+    // Position in Map Component
+    // Height and weight and so on, in Property Component
+    // Displayed related in Graphic Component
 
     // basic property component
     LandPropertyComp * m_basePropertyComp_p;

@@ -39,7 +39,6 @@ LandObject::LandObject(LandObject&& inputObject):
     delete inputObject.m_baseMapComp_p;
     delete inputObject.m_graphicComp_p;
 
-    qDebug() << "Here is in the LandObject right value Constructor" << Qt::endl;
 }
 
 
@@ -57,7 +56,6 @@ LandObject& LandObject::operator=(const LandObject& inputObject)
 
     }
 
-    qDebug() << "Here is the operator =, reload function..." << Qt::endl;
 
     return *this;
 }
@@ -80,7 +78,6 @@ LandObject& LandObject::operator=(LandObject&& inputObject)
         delete inputObject.m_graphicComp_p;
     }
 
-    qDebug() << "Here is the operator =, RIGHT Value, reload function..." << Qt::endl;
 
     return *this;
 }
@@ -114,6 +111,18 @@ void LandObject::updateWholeObject()
 
 }
 
+// for Trial world
+void LandObject::setPosition(int posX, int poxY) {}
+
+void LandObject::setHeight(int height)
+{
+    m_basePropertyComp_p->setDefaultHeight();
+}
+
+void LandObject::setWeight(int weight)
+{
+    m_basePropertyComp_p->setDefaultWeight();
+}
 
 void LandObject::simpleInitialization()
 {

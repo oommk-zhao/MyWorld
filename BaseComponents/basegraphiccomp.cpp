@@ -17,3 +17,8 @@ void BaseGraphicComponent::updateGraphics()
 {
 
 }
+
+QGraphicsObject *BaseGraphicComponent::getGraphicsObject(void)
+{
+    return nullptr;
+}

@@ -55,6 +55,10 @@ set(PROJECT_SOURCES
         BaseComponents/basegraphiccomp.cpp
         BaseComponents/basepropertycomp.h
         BaseComponents/basepropertycomp.cpp
+        BaseComponents/graphicssceneobject.h
+        BaseComponents/graphicssceneobject.cpp
+        BaseComponents/graphicsviewobject.h
+        BaseComponents/graphicsviewobject.cpp
         MapComponents/landobject.h
         MapComponents/landobject.cpp
         MapComponents/landpropertycomp.h

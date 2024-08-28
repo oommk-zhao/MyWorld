@@ -16,7 +16,8 @@
 // Let's do/test it ourselves and see what kind of problem/issue we will meet
 // **************************************************************************
 
-
+#include <QGraphicsScene>
+#include <QGraphicsView>
 #include <QMainWindow>
 
 class WorldBGWindow : public QMainWindow
