@@ -1,2 +1,9 @@
 August 28 2024, we are now in the ObjectsManager::createTrialWorld
     - Create GraphicsObject related part
+    - How to create/initialize Graphics things?
+        - In Object Manager(just a name, not the real manager in the project) (Okay, there is one ObjectsManager, but it is a temporary solution),
+          keep QGraphicsObject, and make XXXXGraphicsComponent as QObject.
+        - Keep QGraphicsObject inside QObject is for the purpose, that hide the implementation of graphics system.
+        - Using QObject, is we need its signal/slot system.
+        - Same structure for Graphics View and Graphics Scene
+    - Where shall we store the GraphicsViewObject and GraphicsSceneObject?
