@@ -16,11 +16,12 @@
 // Let's do/test it ourselves and see what kind of problem/issue we will meet
 // **************************************************************************
 
-#include <QGraphicsScene>
-#include <QGraphicsView>
 #include <QMainWindow>
 
-class WorldBGWindow : public QMainWindow
+#include "BaseComponents/graphicssceneobject.h"
+#include "BaseComponents/graphicsviewobject.h"
+
+class WorldBGWindow : public QObject
 {
     Q_OBJECT
 public:
@@ -28,6 +29,12 @@ public:
 
 signals:
 
+private:
+    void trialWorldInitialization(void);
+
+    GraphicsSceneObject *sceneObject_;
+    GraphicsViewObject *viewObject_;
+    QMainWindow *worldBGWindow_;
 };
 
 #endif // WORLDBGWINDOW_H

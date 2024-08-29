@@ -7,3 +7,9 @@ August 28 2024, we are now in the ObjectsManager::createTrialWorld
         - Using QObject, is we need its signal/slot system.
         - Same structure for Graphics View and Graphics Scene
     - Where shall we store the GraphicsViewObject and GraphicsSceneObject?
+        - In Trial world, we keep GraphicsViewObject and GraphicsSceneObject inside worldBGWindow.
+        - I am not sure whether this is a good idea, might be better to put them inside ObjectManager.
+        - We may have more than single GraphicsScene and GraphicsView.
+            - If so, to use worldBGWindow to maintain might be a bad idea.
+    
+    - Now let's create graphics objects! In the Object manager
