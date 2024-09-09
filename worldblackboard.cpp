@@ -95,7 +95,7 @@ void WorldBlackBoard::loadBasicWorld(void)
     // No update machine and mechanism is necessary for this phrase
     // Ah, please update the github related plan!!!
 
-    m_objectsManager_p->createTrialWorld();
+    m_worldBGWindow_p->createAndShowTrialWorld();
 
     // MainWindow->showLand() or MainWidget->showLand() ?
     // We also need graphic scene and graphic view here for land display/showing.

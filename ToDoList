@@ -13,3 +13,21 @@ August 28 2024, we are now in the ObjectsManager::createTrialWorld
             - If so, to use worldBGWindow to maintain might be a bad idea.
     
     - Now let's create graphics objects! In the Object manager
+    
+    - Not using static_cast pattern to convert basic class into specific one, which make abstract no sense.
+    
+    - Using worldBGWindow to initialize whole graphics things, in the Trial world version.
+    
+    - Using Instance Manager, to hold all Instance required Objects.
+      But! Only Instance Manager is the Instance. For the purpose that reduce the number of instance objects.
+
+September 7th 2024, now are creating the graphics world
+    - General Objects can inheirt from QOjbect. Qt is a big feature of "MyWorld".
+      We can hide detail implementation behind. However, QObject with Q_OBJECT can be explicit, due to we need Signal and Slot.
+      On the other hand, when we will not use Qt anymore, we anyway will change signal/slot system, which means, the modification cannot be avoided.
+    - The Graphics View and Scene have hard code geometry, will be improved during Trial world development.
+    - CAUTION! Graphics Scene and View both have event available. Events defined on these two Objects can bring different Result.
+      Think over more when defining the events
+      
+September 8th 2024, to initialize GraphicsView, Scene and Objects correctly, then show them.
+    - learn the information of QGraphicsWidget.

@@ -119,9 +119,14 @@ void LandObject::setHeight(int height)
     m_basePropertyComp_p->setDefaultHeight();
 }
 
-void LandObject::setWeight(int weight)
+void LandObject::setWidth(int weight)
 {
-    m_basePropertyComp_p->setDefaultWeight();
+    m_basePropertyComp_p->setDefaultWidth();
+}
+
+void LandObject::setGraphicsGeometry(int posX, int posY, int width, int height, int zValue)
+{
+    return;
 }
 
 void LandObject::simpleInitialization()

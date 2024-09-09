@@ -39,6 +39,8 @@ set(PROJECT_SOURCES
         EventManager/eventmanager.cpp
         ObjectsManager/objectsmanager.h
         ObjectsManager/objectsmanager.cpp
+        ObjectsManager/instancemanager.h
+        ObjectsManager/instancemanager.cpp
         GUIManager/worldbgwindow.h
         GUIManager/worldbgwindow.cpp
         TotemBranches/selfgeneratebranch.cpp
@@ -71,6 +73,8 @@ set(PROJECT_SOURCES
         CommandPackage/basecommand.cpp
         CommandPackage/commandmanager.h
         CommandPackage/commandmanager.cpp
+        GraphicsObjects/mgraphicsobject.h
+        GraphicsObjects/mgraphicsobject.cpp
 )
 
 

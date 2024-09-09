@@ -40,16 +40,15 @@ public:
     ObjectsManager();
     virtual ~ObjectsManager();
 
-    // How to call the factory generator, is not clear
-    // Let's try first
-    // And can have refactor
-    BaseObject *createLandObject(void);
-
     // Here is the Trial world creation
     // We use this class as factory for trail version
-    void createTrialWorld(void);
+    void createTrialWorldLandObjects(void);
+
+    std::vector<BaseObject *> getTrialWorldLandObjectList(void);
 
 private:
+    BaseObject *createLandObject(void);
+
     // we use vector first here.
     // Pair is under consideration.
     std::vector<BaseObject *> m_landObjectList_;

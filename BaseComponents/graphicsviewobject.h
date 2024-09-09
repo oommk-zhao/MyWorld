@@ -17,7 +17,7 @@ signals:
 private:
     // Will not return/expose QGraphicsView to the outside
     // So, return QGraphicsView is forbidden here
-    QGraphicsView *getGraphicsView(void) { return nullptr; }
+    QGraphicsView *getGraphicsView(void);
 
     QGraphicsView *graphicsView_;
 };

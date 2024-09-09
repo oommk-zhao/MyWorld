@@ -29,7 +29,11 @@ public:
     void setPosition(int posX, int poxY);
 
     void setHeight(int height);
-    void setWeight(int weight);
+    void setWidth(int width);
+
+    // Trial world temporary solution
+    // Must be improved during Trial World development
+    void setGraphicsGeometry(int posX, int posY, int width, int height, int zValue);
 
     // private functions/methods
 private:

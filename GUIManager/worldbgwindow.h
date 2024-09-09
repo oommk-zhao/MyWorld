@@ -20,20 +20,29 @@
 
 #include "BaseComponents/graphicssceneobject.h"
 #include "BaseComponents/graphicsviewobject.h"
+#include "ObjectsManager/instancemanager.h"
 
 class WorldBGWindow : public QObject
 {
     Q_OBJECT
 public:
-    explicit WorldBGWindow(QWidget *parent = nullptr);
+    explicit WorldBGWindow(QObject *parent = nullptr);
+
+    void createAndShowTrialWorld(void);
 
 signals:
 
 private:
     void trialWorldInitialization(void);
+    void createTrialWorldObjects(void);
+    void createTrialGraphicsWorld(void);
 
     GraphicsSceneObject *sceneObject_;
     GraphicsViewObject *viewObject_;
+
+    InstanceManager *instanceManager_;
+    ObjectsManager *objectsManager_;
+
     QMainWindow *worldBGWindow_;
 };
 

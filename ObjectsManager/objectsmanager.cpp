@@ -17,7 +17,7 @@ BaseObject *ObjectsManager::createLandObject()
     return landObjectTemp;
 }
 
-void ObjectsManager::createTrialWorld(void)
+void ObjectsManager::createTrialWorldLandObjects(void)
 {
     // Target 0_0_0
     // Trial world
@@ -43,9 +43,15 @@ void ObjectsManager::createTrialWorld(void)
             auto landObject = createLandObject();
             static_cast<LandObject *>(landObject)->setPosition(i, j);
             static_cast<LandObject *>(landObject)->setHeight(i);
-            static_cast<LandObject *>(landObject)->setWeight(i);
+            static_cast<LandObject *>(landObject)->setWidth(i);
+            static_cast<LandObject *>(landObject)->setGraphicsGeometry(1, 1, 1, 1, 1);
         }
     }
 
     return;
+}
+
+std::vector<BaseObject *> ObjectsManager::getTrialWorldLandObjectList(void)
+{
+    return m_landObjectList_;
 }

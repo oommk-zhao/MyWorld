@@ -16,11 +16,11 @@ public:
     LandPropertyComp &operator=(LandPropertyComp &&);
 
     void setDefaultHeight(void);
-    void setDefaultWeight(void);
+    void setDefaultWidth(void);
 
-    int getWeight(void) const;
+    int getWidth(void) const;
     int getHeight(void) const;
-    void setWeight(int weight);
+    void setWidth(int width);
     void setHeight(int height);
 
 private:
