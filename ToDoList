@@ -37,3 +37,5 @@ September 8th 2024, to initialize GraphicsView, Scene and Objects correctly, the
     - Now, add the graphics items! But to is the proper way?
     - Go deeper into the Factory mode and related things/topics.
     - In parallel, in Trial, we use static_cast first.
+    
+12/27/2024, now we have new HP Laptop!
