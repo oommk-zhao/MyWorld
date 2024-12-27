@@ -4,13 +4,18 @@
 #include <QGraphicsView>
 #include <QObject>
 
+#include "BaseComponents/graphicssceneobject.h"
+
 // This is for QGraphicsView container
 
 class GraphicsViewObject : public QObject
 {
     Q_OBJECT
 public:
-    explicit GraphicsViewObject(QObject *parent = nullptr);
+    explicit GraphicsViewObject(QObject *parent = nullptr,
+                                GraphicsSceneObject *sceneObject = nullptr);
+
+    void setGraphicsSceneObject(GraphicsSceneObject *sceneObject);
 
 signals:
 
@@ -18,7 +23,9 @@ private:
     // Will not return/expose QGraphicsView to the outside
     // So, return QGraphicsView is forbidden here
     QGraphicsView *getGraphicsView(void);
+    void initialization(void);
 
+    GraphicsSceneObject *graphicsSceneObject_;
     QGraphicsView *graphicsView_;
 };
 

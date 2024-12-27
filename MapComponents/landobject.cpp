@@ -129,6 +129,11 @@ void LandObject::setGraphicsGeometry(int posX, int posY, int width, int height, 
     return;
 }
 
+QGraphicsObject *LandObject::getGraphicsItem(void)
+{
+    return m_graphicComp_p->getGraphicsObject();
+}
+
 void LandObject::simpleInitialization()
 {
     m_basePropertyComp_p = new LandPropertyComp();

@@ -2,6 +2,7 @@
 #define BASEOBJECT_H
 
 // The basic class of all Objects
+#include <QGraphicsObject>
 
 class BaseObject
 {
@@ -22,8 +23,7 @@ public:
     // base update function/method
     // shall be implemented by all inherited leaf classes
     virtual void updateWholeObject();
-
-
+    virtual QGraphicsObject *getGraphicsItem();
 };
 
 #endif // BASEOBJECT_H

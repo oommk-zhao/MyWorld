@@ -3,7 +3,7 @@
 
 // The basic component of the all kinds of Graphic Components
 
-#include <QGraphicsObject>
+#include <QGraphicsItem>
 
 class BaseGraphicComponent
 {
@@ -17,8 +17,9 @@ public:
     QGraphicsObject *getGraphicsObject(void);
 
     // We put graphics object here first, in the base class.
+
 protected:
-    QGraphicsObject *graphicsObject_;
+    QGraphicsItem *graphicsObject_;
 };
 
 #endif // BASEGRAPHICCOMPONENT_H

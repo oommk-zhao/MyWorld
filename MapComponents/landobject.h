@@ -23,7 +23,7 @@ public:
     virtual ~LandObject();
 
     // update contained components
-    void updateWholeObject();
+    void updateWholeObject() override;
 
     // Trial world work around solution
     void setPosition(int posX, int poxY);
@@ -31,9 +31,14 @@ public:
     void setHeight(int height);
     void setWidth(int width);
 
+    /* ------------------------------------------------ */
     // Trial world temporary solution
     // Must be improved during Trial World development
     void setGraphicsGeometry(int posX, int posY, int width, int height, int zValue);
+
+    // we need QGraphics Item for Scene
+
+    QGraphicsObject *getGraphicsItem(void) override;
 
     // private functions/methods
 private:

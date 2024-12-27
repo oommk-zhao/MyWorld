@@ -1,7 +1,9 @@
 #include "worldblackboard.h"
 
 #include <QApplication>
-#include <QTcpSocket>
+#include <QDebug>
+#include <QList>
+#include <QPushButton>
 
 // logo page demo done
 
@@ -19,9 +21,6 @@
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
-
-    auto tcpSocketItem = new QTcpSocket();
-    tcpSocketItem->connectToHost(QString("172.22.1.115"), 5000);
 
     WorldBlackBoard w;
     w.loadLogoWidget();

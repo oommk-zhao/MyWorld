@@ -49,3 +49,8 @@ void BaseObject::updateWholeObject()
 {
 
 }
+
+QGraphicsObject *BaseObject::getGraphicsItem()
+{
+    return nullptr;
+}

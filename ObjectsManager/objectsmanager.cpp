@@ -1,18 +1,20 @@
 #include "objectsmanager.h"
-#include "MapComponents/landobject.h"
+#include <QDebug>
 
-ObjectsManager::ObjectsManager() {}
+ObjectsManager::ObjectsManager()
+    : m_landObjectList_()
+{}
 
 ObjectsManager::~ObjectsManager()
 {
     m_landObjectList_.clear();
 }
 
-BaseObject *ObjectsManager::createLandObject()
+LandObject *ObjectsManager::createLandObject()
 {
-    LandObject *landObjectTemp = nullptr;
-    landObjectTemp = new LandObject();
-    m_landObjectList_.push_back(landObjectTemp);
+    auto landObjectTemp = new LandObject();
+
+    m_landObjectList_.append(landObjectTemp);
 
     return landObjectTemp;
 }
@@ -41,17 +43,17 @@ void ObjectsManager::createTrialWorldLandObjects(void)
     for (auto i = 1; i <= trialLandRow; i++) {
         for (auto j = 1; j <= trialLandColumn; j++) {
             auto landObject = createLandObject();
-            static_cast<LandObject *>(landObject)->setPosition(i, j);
-            static_cast<LandObject *>(landObject)->setHeight(i);
-            static_cast<LandObject *>(landObject)->setWidth(i);
-            static_cast<LandObject *>(landObject)->setGraphicsGeometry(1, 1, 1, 1, 1);
+            landObject->setPosition(i, j);
+            landObject->setHeight(i);
+            landObject->setWidth(i);
+            landObject->setGraphicsGeometry(1, 1, 1, 1, 1);
         }
     }
 
     return;
 }
 
-std::vector<BaseObject *> ObjectsManager::getTrialWorldLandObjectList(void)
+QList<BaseObject *> ObjectsManager::getTrialWorldLandObjectList(void)
 {
     return m_landObjectList_;
 }

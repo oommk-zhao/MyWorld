@@ -27,10 +27,11 @@
 // Let's try the vector first, and see the performance
 // **************************************************************************
 
-class BaseObject;
+#include "BaseComponents/baseobject.h"
+#include "MapComponents/landobject.h"
 
+#include <QList>
 #include <vector>
-
 
 class ObjectsManager
 {
@@ -44,14 +45,15 @@ public:
     // We use this class as factory for trail version
     void createTrialWorldLandObjects(void);
 
-    std::vector<BaseObject *> getTrialWorldLandObjectList(void);
+    QList<BaseObject *> getTrialWorldLandObjectList(void);
 
 private:
-    BaseObject *createLandObject(void);
+    LandObject *createLandObject(void);
 
     // we use vector first here.
     // Pair is under consideration.
-    std::vector<BaseObject *> m_landObjectList_;
+private:
+    QList<BaseObject *> m_landObjectList_;
 };
 
 #endif // OBJECTSMANAGER_H

@@ -31,3 +31,9 @@ September 7th 2024, now are creating the graphics world
       
 September 8th 2024, to initialize GraphicsView, Scene and Objects correctly, then show them.
     - learn the information of QGraphicsWidget.
+    
+9/22 2024, no necessary to define SceneRectangle in Trial version. As by default, the SceneRectangle is dynamicly changed/created/modified by Qt.
+           neither for QGraphicsView
+    - Now, add the graphics items! But to is the proper way?
+    - Go deeper into the Factory mode and related things/topics.
+    - In parallel, in Trial, we use static_cast first.

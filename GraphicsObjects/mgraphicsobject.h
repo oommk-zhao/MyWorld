@@ -5,7 +5,7 @@
 
 #include <QGraphicsObject>
 
-class MGraphicsObject : QGraphicsObject
+class MGraphicsObject : public QGraphicsObject
 {
     Q_OBJECT
 
@@ -16,6 +16,16 @@ public:
     virtual void paint(QPainter *painter,
                        const QStyleOptionGraphicsItem *option,
                        QWidget *widget = 0) override;
+
+    virtual void setWidth(int width);
+    virtual void setHeight(int height);
+
+    QRectF boundingRect() const override;
+
+protected:
+    int graphicsWidth_;
+    int graphicsHeight_;
+
     // We put graphics object here first, in the base class.
 };
 

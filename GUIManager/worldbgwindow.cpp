@@ -1,4 +1,5 @@
 #include "worldbgwindow.h"
+#include "MapComponents/landobject.h"
 
 WorldBGWindow::WorldBGWindow(QObject *parent)
     : QObject{parent}
@@ -17,7 +18,7 @@ void WorldBGWindow::createAndShowTrialWorld(void)
 void WorldBGWindow::trialWorldInitialization(void)
 {
     sceneObject_ = new GraphicsSceneObject(this);
-    viewObject_ = new GraphicsViewObject(this);
+    viewObject_ = new GraphicsViewObject(this, sceneObject_);
     worldBGWindow_ = new QMainWindow();
 
     instanceManager_ = InstanceManager::getInstanceManager();
@@ -41,6 +42,22 @@ void WorldBGWindow::createTrialGraphicsWorld(void)
     // And should be improved during development of Trial World
 
     // Set Scene and View Rectangle and Geometry
+
+    // Set Scene Retangle by default first, in trial version
+    // sceneObject_->setSceneRectangle(0, 0, 0, 0);
+    // And same for the Graphics View
+    // viewObject->setSceneRect(0, 0, 0, 0);
+
+    // okay, how is the proper way to add graphicsItem?
+
+    // lets say in trial first version, we use static_cast for temporary solution
+
+    auto itemList = objectsManager_->getTrialWorldLandObjectList();
+
+    for (auto itemIt : itemList) {
+        auto graphicsItem = itemIt->getGraphicsItem();
+        sceneObject_->addItems(graphicsItem);
+    }
 
     return;
 }

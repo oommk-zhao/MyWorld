@@ -1,6 +1,8 @@
 #include "mgraphicsobject.h"
 
-MGraphicsObject::MGraphicsObject() {}
+MGraphicsObject::MGraphicsObject()
+    : QGraphicsObject()
+{}
 
 MGraphicsObject::~MGraphicsObject() {}
 
@@ -9,4 +11,19 @@ void MGraphicsObject::paint(QPainter *painter,
                             QWidget *widget)
 {
     return;
+}
+
+void MGraphicsObject::setWidth(int width)
+{
+    graphicsWidth_ = width;
+}
+
+void MGraphicsObject::setHeight(int height)
+{
+    graphicsHeight_ = height;
+}
+
+QRectF MGraphicsObject::boundingRect() const
+{
+    return QRectF(this->x(), this->y(), graphicsWidth_, graphicsHeight_);
 }

@@ -1,5 +1,6 @@
 #include "basegraphiccomp.h"
 
+// need a customized graphics object
 
 BaseGraphicComponent::BaseGraphicComponent()
 {
