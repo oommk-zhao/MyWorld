@@ -17,12 +17,13 @@ public:
 
     void setGraphicsSceneObject(GraphicsSceneObject *sceneObject);
 
+    QGraphicsView *getGraphicsView(void);
 signals:
 
 private:
     // Will not return/expose QGraphicsView to the outside
     // So, return QGraphicsView is forbidden here
-    QGraphicsView *getGraphicsView(void);
+
     void initialization(void);
 
     GraphicsSceneObject *graphicsSceneObject_;

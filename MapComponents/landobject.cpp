@@ -13,7 +13,7 @@ LandObject::LandObject():
     simpleInitialization();
 }
 
-
+/*
 LandObject::LandObject(const LandObject& inputObject):
     BaseObject(inputObject),
     m_basePropertyComp_p(inputObject.m_basePropertyComp_p),
@@ -39,9 +39,9 @@ LandObject::LandObject(LandObject&& inputObject):
     delete inputObject.m_baseMapComp_p;
     delete inputObject.m_graphicComp_p;
 
-}
+}*/
 
-
+/*
 LandObject& LandObject::operator=(const LandObject& inputObject)
 {
     if( this != &inputObject )
@@ -81,10 +81,11 @@ LandObject& LandObject::operator=(LandObject&& inputObject)
 
     return *this;
 }
-
+*/
 
 LandObject::~LandObject()
 {
+    /*
     if ( m_basePropertyComp_p )
     {
         delete m_basePropertyComp_p;
@@ -101,7 +102,7 @@ LandObject::~LandObject()
     {
         delete m_basePropertyComp_p;
         m_basePropertyComp_p = nullptr;
-    }
+    }*/
 }
 
 

@@ -39,3 +39,5 @@ September 8th 2024, to initialize GraphicsView, Scene and Objects correctly, the
     - In parallel, in Trial, we use static_cast first.
     
 12/27/2024, now we have new HP Laptop!
+
+01/12/2025, make clear why Container.push_back brings an endless loop crash?

@@ -15,7 +15,7 @@ public:
     virtual ~InstanceManager();
 
     static InstanceManager *getInstanceManager(void);
-    std::shared_ptr<ObjectsManager> getObjectsManager();
+    ObjectsManager* getObjectsManager();
 
 private:
     InstanceManager();

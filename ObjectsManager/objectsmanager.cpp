@@ -2,7 +2,7 @@
 #include <QDebug>
 
 ObjectsManager::ObjectsManager()
-    : m_landObjectList_()
+    : m_landObjectList_{}
 {}
 
 ObjectsManager::~ObjectsManager()
@@ -12,9 +12,9 @@ ObjectsManager::~ObjectsManager()
 
 LandObject *ObjectsManager::createLandObject()
 {
-    auto landObjectTemp = new LandObject();
+    LandObject * landObjectTemp = new LandObject();
 
-    m_landObjectList_.append(landObjectTemp);
+    this->m_landObjectList_.push_back(landObjectTemp);
 
     return landObjectTemp;
 }
@@ -37,12 +37,12 @@ void ObjectsManager::createTrialWorldLandObjects(void)
     // In trial we try index started with 1 instead of 0
     // for maintaining friendly
 
-    int trialLandRow = 16;
-    int trialLandColumn = 9;
+    int trialLandRow = 3;
+    int trialLandColumn = 1;
 
     for (auto i = 1; i <= trialLandRow; i++) {
         for (auto j = 1; j <= trialLandColumn; j++) {
-            auto landObject = createLandObject();
+            LandObject * landObject = createLandObject();
             landObject->setPosition(i, j);
             landObject->setHeight(i);
             landObject->setWidth(i);
@@ -53,7 +53,7 @@ void ObjectsManager::createTrialWorldLandObjects(void)
     return;
 }
 
-QList<BaseObject *> ObjectsManager::getTrialWorldLandObjectList(void)
+QList<LandObject *> ObjectsManager::getTrialWorldLandObjectList(void)
 {
     return m_landObjectList_;
 }

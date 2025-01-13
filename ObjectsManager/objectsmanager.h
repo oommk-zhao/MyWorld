@@ -32,6 +32,7 @@
 
 #include <QList>
 #include <vector>
+#include <QLabel>
 
 class ObjectsManager
 {
@@ -45,7 +46,7 @@ public:
     // We use this class as factory for trail version
     void createTrialWorldLandObjects(void);
 
-    QList<BaseObject *> getTrialWorldLandObjectList(void);
+    QList<LandObject *> getTrialWorldLandObjectList(void);
 
 private:
     LandObject *createLandObject(void);
@@ -53,7 +54,7 @@ private:
     // we use vector first here.
     // Pair is under consideration.
 private:
-    QList<BaseObject *> m_landObjectList_;
+    QList<LandObject *> m_landObjectList_;
 };
 
 #endif // OBJECTSMANAGER_H

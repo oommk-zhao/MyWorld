@@ -13,11 +13,11 @@ class LandObject: public BaseObject
 public:
 
     LandObject();
-    LandObject(const LandObject&);
-    LandObject(LandObject&&);
+    //LandObject(const LandObject&);
+    //LandObject(LandObject&&);
 
-    LandObject &operator=(const LandObject&);
-    LandObject &operator=(LandObject&&);
+    //LandObject &operator=(const LandObject&);
+    //LandObject &operator=(LandObject&&);
 
 
     virtual ~LandObject();

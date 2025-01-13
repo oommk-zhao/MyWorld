@@ -24,7 +24,7 @@ InstanceManager *InstanceManager::getInstanceManager(void)
     return instanceManager_;
 }
 
-std::shared_ptr<ObjectsManager> InstanceManager::getObjectsManager(void)
+ObjectsManager* InstanceManager::getObjectsManager(void)
 {
-    return std::shared_ptr<ObjectsManager>(objectsManager_);
+    return objectsManager_;
 }

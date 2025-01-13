@@ -2,12 +2,12 @@
 #include "MapComponents/landobject.h"
 
 WorldBGWindow::WorldBGWindow(QObject *parent)
-    : QObject{parent}
+    : QMainWindow{}
     , sceneObject_(nullptr)
     , viewObject_(nullptr)
     , instanceManager_(nullptr)
     , objectsManager_(nullptr)
-    , worldBGWindow_(nullptr)
+    , testLabel_(nullptr)
 {}
 
 void WorldBGWindow::createAndShowTrialWorld(void)
@@ -17,16 +17,25 @@ void WorldBGWindow::createAndShowTrialWorld(void)
 
 void WorldBGWindow::trialWorldInitialization(void)
 {
+    this->setGeometry(0,0,1024,768);
+
     sceneObject_ = new GraphicsSceneObject(this);
     viewObject_ = new GraphicsViewObject(this, sceneObject_);
-    worldBGWindow_ = new QMainWindow();
+
+    viewObject_->getGraphicsView()->setParent(this);
+    viewObject_->getGraphicsView()->setGeometry(0,0,800,600);
 
     instanceManager_ = InstanceManager::getInstanceManager();
-    objectsManager_ = instanceManager_->getObjectsManager().get();
+    objectsManager_ = instanceManager_->getObjectsManager();
 
     createTrialWorldObjects();
 
     createTrialGraphicsWorld();
+
+    viewObject_->getGraphicsView()->show();
+
+
+    showTheTrialWorld();
 
     return;
 }
@@ -34,6 +43,7 @@ void WorldBGWindow::trialWorldInitialization(void)
 void WorldBGWindow::createTrialWorldObjects(void)
 {
     objectsManager_->createTrialWorldLandObjects();
+
 }
 
 void WorldBGWindow::createTrialGraphicsWorld(void)
@@ -59,5 +69,14 @@ void WorldBGWindow::createTrialGraphicsWorld(void)
         sceneObject_->addItems(graphicsItem);
     }
 
+    testLabel_ = new QLabel(this);
+    testLabel_->setGeometry(50,50,500,200);
+    testLabel_->setText("Hello My TRIAL World!!!");
+
     return;
+}
+
+
+void WorldBGWindow::showTheTrialWorld(void){
+    this->show();
 }

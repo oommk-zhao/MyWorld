@@ -17,12 +17,13 @@
 // **************************************************************************
 
 #include <QMainWindow>
+#include <QLabel>
 
 #include "BaseComponents/graphicssceneobject.h"
 #include "BaseComponents/graphicsviewobject.h"
 #include "ObjectsManager/instancemanager.h"
 
-class WorldBGWindow : public QObject
+class WorldBGWindow : public QMainWindow
 {
     Q_OBJECT
 public:
@@ -37,13 +38,16 @@ private:
     void createTrialWorldObjects(void);
     void createTrialGraphicsWorld(void);
 
+    void showTheTrialWorld(void);
+
     GraphicsSceneObject *sceneObject_;
     GraphicsViewObject *viewObject_;
 
     InstanceManager *instanceManager_;
     ObjectsManager *objectsManager_;
 
-    QMainWindow *worldBGWindow_;
+    QLabel* testLabel_;
+
 };
 
 #endif // WORLDBGWINDOW_H
