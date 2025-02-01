@@ -75,12 +75,15 @@ set(PROJECT_SOURCES
         CommandPackage/commandmanager.cpp
         GraphicsObjects/mgraphicsobject.h
         GraphicsObjects/mgraphicsobject.cpp
+        GraphicsObjects/landqgraphicsitem.h
+        GraphicsObjects/landqgraphicsitem.cpp
 )
 
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
     qt_add_executable(TheMyWorld
         ${PROJECT_SOURCES}
+
     )
 else()
     if(ANDROID)
