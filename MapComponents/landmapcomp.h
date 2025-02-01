@@ -7,11 +7,11 @@ class LandMapComp : public BaseMapCompoment
 {
 public:
     LandMapComp();
-    LandMapComp(const LandMapComp &);
+    /*LandMapComp(const LandMapComp &);
     LandMapComp(LandMapComp &&);
 
     LandMapComp &operator=(const LandMapComp &);
-    LandMapComp &operator=(LandMapComp &&);
+    LandMapComp &operator=(LandMapComp &&);*/
 
     int posX() const;
     int poxY() const;

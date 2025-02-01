@@ -85,12 +85,6 @@ LandObject& LandObject::operator=(LandObject&& inputObject)
 
 LandObject::~LandObject()
 {
-    /*
-    if ( m_basePropertyComp_p )
-    {
-        delete m_basePropertyComp_p;
-        m_basePropertyComp_p = nullptr;
-    }
 
     if ( m_basePropertyComp_p )
     {
@@ -102,7 +96,13 @@ LandObject::~LandObject()
     {
         delete m_basePropertyComp_p;
         m_basePropertyComp_p = nullptr;
-    }*/
+    }
+
+    if ( m_basePropertyComp_p )
+    {
+        delete m_basePropertyComp_p;
+        m_basePropertyComp_p = nullptr;
+    }
 }
 
 
@@ -113,7 +113,11 @@ void LandObject::updateWholeObject()
 }
 
 // for Trial world
-void LandObject::setPosition(int posX, int poxY) {}
+// Todo, set coordinate into LandQGrahpics Item, following three methods
+void LandObject::setPosition(int posX, int poxY) {
+    // should be
+    // m_graphicComp_p->setPos();
+}
 
 void LandObject::setHeight(int height)
 {

@@ -1,8 +1,8 @@
 #include "landgraphiccomp.h"
-#include "GraphicsObjects/mgraphicsobject.h"
+#include "GraphicsObjects/landqgraphicsitem.h"
 
 LandGraphicComp::LandGraphicComp()
     : BaseGraphicComponent()
 {
-    BaseGraphicComponent::graphicsObject_ = new MGraphicsObject();
+    graphicsObject_ = new LandQGraphicsItem();
 }

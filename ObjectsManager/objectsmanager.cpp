@@ -37,8 +37,8 @@ void ObjectsManager::createTrialWorldLandObjects(void)
     // In trial we try index started with 1 instead of 0
     // for maintaining friendly
 
-    int trialLandRow = 3;
-    int trialLandColumn = 1;
+    int trialLandRow = 16;
+    int trialLandColumn = 9;
 
     for (auto i = 1; i <= trialLandRow; i++) {
         for (auto j = 1; j <= trialLandColumn; j++) {
@@ -46,7 +46,6 @@ void ObjectsManager::createTrialWorldLandObjects(void)
             landObject->setPosition(i, j);
             landObject->setHeight(i);
             landObject->setWidth(i);
-            landObject->setGraphicsGeometry(1, 1, 1, 1, 1);
         }
     }
 

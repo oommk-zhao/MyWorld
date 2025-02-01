@@ -41,3 +41,11 @@ September 8th 2024, to initialize GraphicsView, Scene and Objects correctly, the
 12/27/2024, now we have new HP Laptop!
 
 01/12/2025, make clear why Container.push_back brings an endless loop crash?
+
+01/18/2025, crash solved, now make objects generated, with at least number printed on the graphics view!
+            1. MapItem or let's say, all graphics related item should have one item inherited from the QGraphicsItem.
+               This is missing, and need to design properly, even for the Trial World.      
+
+01/19/2025, we have one graphics inherited item, Class name MGraphicsObject. Could use it for trial version.     
+            ToDo, implement the paint and boundingRect of class LandQGraphicsItem, then generate it! Paint it out!
+            ToDo, extend the implementation of LandObject->setPosition | setHeight | setWidth            

@@ -9,11 +9,12 @@ class LandPropertyComp : public BasePropertyComp
 {
 public:
     LandPropertyComp();
+    /*
     LandPropertyComp(const LandPropertyComp &);
     LandPropertyComp(LandPropertyComp &&);
 
     LandPropertyComp &operator=(const LandPropertyComp &);
-    LandPropertyComp &operator=(LandPropertyComp &&);
+    LandPropertyComp &operator=(LandPropertyComp &&);*/
 
     void setDefaultHeight(void);
     void setDefaultWidth(void);

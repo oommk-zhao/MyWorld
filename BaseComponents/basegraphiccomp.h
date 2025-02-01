@@ -4,6 +4,7 @@
 // The basic component of the all kinds of Graphic Components
 
 #include <QGraphicsItem>
+#include "GraphicsObjects/mgraphicsobject.h"
 
 class BaseGraphicComponent
 {
@@ -14,12 +15,13 @@ public:
 
     virtual void updateGraphics();
 
-    QGraphicsObject *getGraphicsObject(void);
+    MGraphicsObject *getGraphicsObject(void);
 
     // We put graphics object here first, in the base class.
 
 protected:
-    QGraphicsItem *graphicsObject_;
+    // Todo, using MGraphicsObject here instead of the Qt one
+    MGraphicsObject *graphicsObject_;
 };
 
 #endif // BASEGRAPHICCOMPONENT_H

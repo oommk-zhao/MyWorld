@@ -19,7 +19,7 @@ void BaseGraphicComponent::updateGraphics()
 
 }
 
-QGraphicsObject *BaseGraphicComponent::getGraphicsObject(void)
+MGraphicsObject *BaseGraphicComponent::getGraphicsObject(void)
 {
-    return nullptr;
+    return graphicsObject_;
 }
