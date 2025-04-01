@@ -6,7 +6,6 @@ WorldBlackBoard::WorldBlackBoard():
     QObject(),
     m_logoWidget_p(nullptr),
     m_updateMachine_p(nullptr),
-    m_objectsManager_p(nullptr),
     m_eventManager_p(nullptr),
     m_worldBGWindow_p(nullptr)
 {
@@ -28,11 +27,6 @@ WorldBlackBoard::~WorldBlackBoard(){
         m_updateMachine_p = nullptr;
     }
 
-    if ( nullptr != m_objectsManager_p ){
-        delete m_objectsManager_p;
-        m_objectsManager_p = nullptr;
-    }
-
     if ( nullptr != m_eventManager_p ){
         delete m_eventManager_p;
         m_eventManager_p = nullptr;
@@ -52,9 +46,6 @@ void WorldBlackBoard::simpleInitialization(void){
 
 
     m_updateMachine_p = new UpdateMachine();
-
-
-    m_objectsManager_p = new ObjectsManager();
 
 
     m_eventManager_p = new EventManager();

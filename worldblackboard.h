@@ -28,7 +28,6 @@
 
 #include <QObject>
 #include "updatemachine.h"
-#include "ObjectsManager/objectsmanager.h"
 #include "EventManager/eventmanager.h"
 #include "CommandPackage/commandmanager.h"
 #include "logopage.h"
@@ -77,7 +76,6 @@ private:
 
     LogoPage * m_logoWidget_p;
     UpdateMachine * m_updateMachine_p;
-    ObjectsManager * m_objectsManager_p;
     EventManager * m_eventManager_p;
     CommandManager * m_commandManager_p;
 
