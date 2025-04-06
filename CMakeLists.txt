@@ -77,12 +77,16 @@ set(PROJECT_SOURCES
         GraphicsObjects/mgraphicsobject.cpp
         GraphicsObjects/landqgraphicsitem.h
         GraphicsObjects/landqgraphicsitem.cpp
+        GodTrial/erdemutter.h GodTrial/erdemutter.cpp
+        GodTrial/lebensmutter.h GodTrial/lebensmutter.cpp
 )
 
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
     qt_add_executable(TheMyWorld
         ${PROJECT_SOURCES}
+
+
 
     )
 else()
