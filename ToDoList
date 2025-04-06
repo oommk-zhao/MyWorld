@@ -48,4 +48,15 @@ September 8th 2024, to initialize GraphicsView, Scene and Objects correctly, the
 
 01/19/2025, we have one graphics inherited item, Class name MGraphicsObject. Could use it for trial version.     
             ToDo, implement the paint and boundingRect of class LandQGraphicsItem, then generate it! Paint it out!
-            ToDo, extend the implementation of LandObject->setPosition | setHeight | setWidth            
+            ToDo, extend the implementation of LandObject->setPosition | setHeight | setWidth          
+
+------------------------------------------------------------------------------------------------
+
+God Trial World
+
+04/06/2025, re-make, WorldBG, LandMutter, LebenMutter.
+            WorldBG to be the main board of Whole world.
+            LandMutter to create Land Objects.
+            LebenMutter to create Leben Objects.            
+            On the main Board, WorldBG, to handle creation of Land and Leben, and put Leben onto the Land.
+            Named, God, Trial World.
